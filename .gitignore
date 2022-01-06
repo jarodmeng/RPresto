@@ -6,3 +6,4 @@ tests/testthat/credentials.dcf
 *./so
 .DS_Store
 inst/doc
+docs
