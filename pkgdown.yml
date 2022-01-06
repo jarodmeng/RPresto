@@ -2,8 +2,9 @@ pandoc: 2.14.2
 pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
+  complex-types: complex-types.html
   primitive-types: primitive-types.html
-last_built: 2022-01-06T02:36Z
+last_built: 2022-01-06T13:30Z
 urls:
   reference: https://jarodmeng.github.io/RPresto/reference
   article: https://jarodmeng.github.io/RPresto/articles

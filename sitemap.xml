@@ -13,6 +13,9 @@
     <loc>https://jarodmeng.github.io/RPresto/LICENSE-text.html</loc>
   </url>
   <url>
+    <loc>https://jarodmeng.github.io/RPresto/articles/complex-types.html</loc>
+  </url>
+  <url>
     <loc>https://jarodmeng.github.io/RPresto/articles/index.html</loc>
   </url>
   <url>
@@ -47,6 +50,12 @@
   </url>
   <url>
     <loc>https://jarodmeng.github.io/RPresto/reference/RPresto.html</loc>
+  </url>
+  <url>
+    <loc>https://jarodmeng.github.io/RPresto/reference/create_dummy_presto_primitive_arrays_table.html</loc>
+  </url>
+  <url>
+    <loc>https://jarodmeng.github.io/RPresto/reference/create_dummy_presto_primitive_maps_table.html</loc>
   </url>
   <url>
     <loc>https://jarodmeng.github.io/RPresto/reference/create_dummy_presto_primitive_types_table.html</loc>
