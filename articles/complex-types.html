@@ -190,13 +190,11 @@
 <div class="section level4">
 <h4 id="create-a-table-with-arrays-of-primitive-types">Create a table with <code>ARRAY</code>s of primitive types<a class="anchor" aria-label="anchor" href="#create-a-table-with-arrays-of-primitive-types"></a>
 </h4>
-<p>We first create a table with <code>ARRAY</code>s of all supported primitive Presto data types using the <code><a href="../reference/create_dummy_presto_primitive_arrays_table.html">create_dummy_presto_primitive_arrays_table()</a></code> function included in the <code>RPresto</code> package.</p>
+<p>We first create a table with <code>ARRAY</code>s of all supported primitive Presto data types using the <code><a href="../reference/dummy_tables.html">create_primitive_arrays_table()</a></code> function included in the <code>RPresto</code> package.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/create_dummy_presto_primitive_arrays_table.html">create_dummy_presto_primitive_arrays_table</a></span><span class="op">(</span>
-  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_arrays"</span>
-<span class="op">)</span>
-<span class="co">#&gt; The previous table presto_primitive_arrays has been dropped.</span>
-<span class="co">#&gt; The table presto_primitive_arrays has been created.</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_arrays_table</a></span><span class="op">(</span>
+  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_arrays"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div>
 <p>We can check if the table now exists in Presto.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_primitive_arrays"</span><span class="op">)</span>
@@ -295,16 +293,11 @@
 <div class="section level4">
 <h4 id="create-a-table-with-maps-of-primitive-types">Create a table with <code>MAP</code>S of primitive types<a class="anchor" aria-label="anchor" href="#create-a-table-with-maps-of-primitive-types"></a>
 </h4>
-<p>We first create a table with <code>MAPS</code>s of all supported primitive Presto data types using the <code><a href="../reference/create_dummy_presto_primitive_maps_table.html">create_dummy_presto_primitive_maps_table()</a></code> function included in the <code>RPresto</code> package.</p>
+<p>We first create a table with <code>MAPS</code>s of all supported primitive Presto data types using the <code><a href="../reference/dummy_tables.html">create_primitive_maps_table()</a></code> function included in the <code>RPresto</code> package.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/create_dummy_presto_primitive_maps_table.html">create_dummy_presto_primitive_maps_table</a></span><span class="op">(</span>
-  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_maps"</span>
-<span class="op">)</span>
-<span class="co">#&gt; The previous table tmp_presto_primitive_maps has been dropped.</span>
-<span class="co">#&gt; The table tmp_presto_primitive_maps has been created.</span>
-<span class="co">#&gt; The previous table presto_primitive_maps has been dropped.</span>
-<span class="co">#&gt; The table presto_primitive_maps has been created.</span>
-<span class="co">#&gt; The temp table presto_primitive_maps has been dropped.</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_maps_table</a></span><span class="op">(</span>
+  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_maps"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div>
 <p>We can check if the table now exists in Presto.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_primitive_maps"</span><span class="op">)</span>
@@ -466,16 +459,11 @@
 <div class="section level3">
 <h3 id="single-row-translation">Single <code>ROW</code> translation<a class="anchor" aria-label="anchor" href="#single-row-translation"></a>
 </h3>
-<p>To demonstrate how <code>ROW</code> types are translated into R types, we first create a table using an auxiliary <code><a href="../reference/create_dummy_presto_primitive_types_table.html">create_dummy_presto_primitive_types_table()</a></code> function included in the package. The resulting table has 3 rows and 17 columns each of which corresponds to a supported primitive type.</p>
+<p>To demonstrate how <code>ROW</code> types are translated into R types, we first create a table using an auxiliary <code><a href="../reference/dummy_tables.html">create_primitive_types_table()</a></code> function included in the package. The resulting table has 3 rows and 17 columns each of which corresponds to a supported primitive type.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/create_dummy_presto_primitive_types_table.html">create_dummy_presto_primitive_types_table</a></span><span class="op">(</span>
-  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_types"</span>
-<span class="op">)</span>
-<span class="co">#&gt; The previous table tmp_presto_primitive_types has been dropped.</span>
-<span class="co">#&gt; The table tmp_presto_primitive_types has been created.</span>
-<span class="co">#&gt; The previous table presto_primitive_types has been dropped.</span>
-<span class="co">#&gt; The table presto_primitive_types has been created.</span>
-<span class="co">#&gt; The temp table presto_primitive_types has been dropped.</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_types_table</a></span><span class="op">(</span>
+  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_types"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div>
 <p>We can check if the table now exists in Presto.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_primitive_types"</span><span class="op">)</span>

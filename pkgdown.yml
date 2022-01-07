@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   complex-types: complex-types.html
   primitive-types: primitive-types.html
-last_built: 2022-01-06T13:30Z
+last_built: 2022-01-07T11:59Z
 urls:
   reference: https://jarodmeng.github.io/RPresto/reference
   article: https://jarodmeng.github.io/RPresto/articles
