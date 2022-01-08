@@ -459,43 +459,38 @@
 <div class="section level3">
 <h3 id="single-row-translation">Single <code>ROW</code> translation<a class="anchor" aria-label="anchor" href="#single-row-translation"></a>
 </h3>
-<p>To demonstrate how <code>ROW</code> types are translated into R types, we first create a table using an auxiliary <code><a href="../reference/dummy_tables.html">create_primitive_types_table()</a></code> function included in the package. The resulting table has 3 rows and 17 columns each of which corresponds to a supported primitive type.</p>
+<p>To demonstrate how <code>ROW</code> types are translated into R types, we first create a table using an auxiliary <code><a href="../reference/dummy_tables.html">create_primitive_rows_table()</a></code> function included in the package. The resulting table has only 1 column named <code>row_primitive_types</code> which is a <code>ROW</code> that includes 17 sub-columns representing all supported primitive types.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_types_table</a></span><span class="op">(</span>
-  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_types"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_rows_table</a></span><span class="op">(</span>
+  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_rows"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
 <p>We can check if the table now exists in Presto.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_primitive_types"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_primitive_rows"</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
-<p>We can list the fields in the table. They are named after the Presto types they represent.</p>
+<p>We can list the fields in the table.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListFields.html" class="external-link">dbListFields</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_primitive_types"</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "boolean"                "tinyint"                "smallint"              </span>
-<span class="co">#&gt;  [4] "integer"                "bigint"                 "real"                  </span>
-<span class="co">#&gt;  [7] "double"                 "varchar"                "char"                  </span>
-<span class="co">#&gt; [10] "varbinary"              "date"                   "time"                  </span>
-<span class="co">#&gt; [13] "time_with_tz"           "timestamp"              "timestamp_with_tz"     </span>
-<span class="co">#&gt; [16] "interval_year_to_month" "interval_day_to_second"</span></code></pre></div>
-<p>We then combine all primitive types into one <code>ROW</code> column and retrieve the data.</p>
+<code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListFields.html" class="external-link">dbListFields</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_primitive_rows"</span><span class="op">)</span>
+<span class="co">#&gt; [1] "row_primitive_types"</span></code></pre></div>
+<p>We can then retrieve all the data from the table.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span>
   <span class="va">df.row_of_primitive</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span>
     <span class="va">con</span>,
-    <span class="st">[1038 chars quoted with '"']</span>,
+    <span class="st">"SELECT row_primitive_types FROM presto_primitive_rows"</span>,
     bigint <span class="op">=</span> <span class="st">"integer64"</span>
   <span class="op">)</span>
 <span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 1</span></span>
-<span class="co">#&gt;   primitive_types  </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;named list [17]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">&lt;named list [17]&gt;</span></span>
+<span class="co">#&gt;   row_primitive_types</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>             </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;named list [17]&gt;</span>  </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">&lt;named list [17]&gt;</span>  </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #949494;">&lt;named list [17]&gt;</span></span></code></pre></div>
 <p>We can check the R types of each element in the named list.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html" class="external-link">enframe</a></span><span class="op">(</span>
-  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.row_of_primitive</span><span class="op">$</span><span class="va">primitive_types</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.row_of_primitive</span><span class="op">$</span><span class="va">row_primitive_types</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 2</span></span>
 <span class="co">#&gt;    name                   value    </span>
@@ -521,24 +516,38 @@
 <div class="section level3">
 <h3 id="repeated-rows-translation">Repeated <code>ROW</code>s translation<a class="anchor" aria-label="anchor" href="#repeated-rows-translation"></a>
 </h3>
-<p>To construct a repeated <code>ROW</code> column, we first follow the same logic used above in the single <code>ROW</code> translation section to collect all primitive types into a single <code>ROW</code> and then create an <code>ARRAY</code> using it.</p>
+<p>To construct a repeated <code>ROW</code> column, we use the auxiliary <code><a href="../reference/dummy_tables.html">create_array_of_rows_table()</a></code> function.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/dummy_tables.html">create_array_of_rows_table</a></span><span class="op">(</span>
+  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_array_of_rows"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div>
+<p>We can check if the table now exists in Presto and the field name.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_array_of_rows"</span><span class="op">)</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListFields.html" class="external-link">dbListFields</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_array_of_rows"</span><span class="op">)</span>
+<span class="co">#&gt; [1] "array_of_rows"</span></code></pre></div>
+<p>We can import the whole data into R.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span>
   <span class="va">df.array_of_rows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span>
     <span class="va">con</span>,
-    <span class="st">[1207 chars quoted with '"']</span>,
+    <span class="st">"SELECT array_of_rows FROM presto_array_of_rows"</span>,
     bigint <span class="op">=</span> <span class="st">"integer64"</span>
   <span class="op">)</span>
 <span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 1</span></span>
-<span class="co">#&gt;   array_row        </span>
+<span class="co">#&gt;   array_of_rows    </span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>           </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;tibble [2 × 17]&gt;</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">&lt;tibble [2 × 17]&gt;</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #949494;">&lt;tibble [2 × 17]&gt;</span></span></code></pre></div>
 <p>We can verify the tibble’s column types.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html" class="external-link">enframe</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.array_of_rows</span><span class="op">$</span><span class="va">array_row</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html" class="external-link">enframe</a></span><span class="op">(</span>
+  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.array_of_rows</span><span class="op">$</span><span class="va">array_of_rows</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+<span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 2</span></span>
 <span class="co">#&gt;    name                   value    </span>
 <span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
@@ -564,7 +573,7 @@
 <div class="section level2">
 <h2 id="walkthrough-wrap-up">Walkthrough wrap-up<a class="anchor" aria-label="anchor" href="#walkthrough-wrap-up"></a>
 </h2>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html" class="external-link">dbDisconnect</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 </div>

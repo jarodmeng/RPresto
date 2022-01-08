@@ -114,6 +114,9 @@ zone. See the session.timezone tests for examples.</p></dd>
 <dt>parameters</dt>
 <dd><p>A <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></code> of extra parameters to be passed in
 the ‘X-Presto-Session’ header</p></dd>
+<dt>use.trino.headers</dt>
+<dd><p>A boolean to indicate whether Trino request headers
+should be used. Default to FALSE.</p></dd>
 <dt>bigint</dt>
 <dd><p>The R type that Presto's 64-bit integer (<code>BIGINT</code>) types should
 be translated to. The default is <code>"integer"</code>, which returns R's <code>integer</code>
