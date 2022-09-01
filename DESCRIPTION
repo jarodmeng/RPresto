@@ -48,6 +48,7 @@ Collate:
     'PrestoSession.R'
     'PrestoConnection.R'
     'PrestoQuery.R'
+    'PrestoQuery2.R'
     'PrestoResult.R'
     'RPresto-package.R'
     'create.dummy.tables.R'
