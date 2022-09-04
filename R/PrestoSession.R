@@ -22,11 +22,15 @@
 PrestoSession <- setRefClass("PrestoSession",
   fields = c(
     ".parameters",
-    ".ctes"
+    ".ctes",
+    ".prepared.statements"
   ),
   methods = list(
     initialize = function(parameters, ctes = list(), ...) {
-      initFields(.parameters = parameters, .ctes = list())
+      initFields(
+        .parameters = parameters, .ctes = list(),
+        .prepared.statements = list()
+      )
       if (length(ctes) > 0) {
         if ("" %in% names(ctes)) {
           stop("All CTEs are not named.", call. = FALSE)
@@ -116,6 +120,23 @@ PrestoSession <- setRefClass("PrestoSession",
       } else {
         return(dependent_ctes)
       }
+    },
+    setPreparedStatement=function(name, query) {
+      .prepared.statements[[name]] <<- query
+    },
+    unsetPreparedStatement=function(name) {
+      .prepared.statements[[name]] <<- NULL
+    },
+    preparedStatements=function() {
+      return(.prepared.statements)
+    },
+    preparedStatementsString=function() {
+      return(paste(
+        names(.prepared.statements),
+        .prepared.statements,
+        sep='=',
+        collapse=','
+      ))
     }
   )
 )

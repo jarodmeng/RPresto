@@ -8,14 +8,15 @@
 #'
 #' @keywords internal
 PrestoQuery2 <- setRefClass('PrestoQuery2',
-  fields=c(
+  fields = c(
     '.conn',
     '.statement',
     '.next.uri',
     '.state',
-    '.request.results'
+    '.request.results',
+    '.timestamp'
   ),
-  methods=list(
+  methods = list(
     initialize = function(conn, statement) {
       initFields(
         .conn = conn,
@@ -24,6 +25,13 @@ PrestoQuery2 <- setRefClass('PrestoQuery2',
         .state = NA_character_,
         .request.results = list()
       )
+    },
+    # Access functions
+    conn = function() {
+      return(.conn)
+    },
+    statement = function() {
+      return(.statement)
     },
     next.uri = function(value) {
       if (!missing(value)) {
@@ -37,17 +45,54 @@ PrestoQuery2 <- setRefClass('PrestoQuery2',
       }
       invisible(.state)
     },
-    append.request.result = function(request_result) {
-      .request.results <<- c(.request.results, list(request_result))
+    request.results = function(request_result) {
+      if (!missing(request_result)) {
+        .request.results <<- c(.request.results, list(request_result))
+      }
+      invisible(.request.results)
     },
+    # Auxiliary functions
     post_uri = function() {
       return(paste0(.conn@host, ':', .conn@port, '/v1/statement'))
     },
     request_headers = function() {
       return(.request_headers(.conn))
     },
+    update_session = function(content, response) {
+      if (!is.null(content$updateType)) {
+        if (content$updateType == 'PREPARE') {
+          properties <- httr::headers(response)[['x-presto-added-prepare']]
+          if (!is.null(properties)) {
+            for (pair in strsplit(properties, ',', fixed = TRUE)) {
+              pair <- unlist(strsplit(pair, '=', fixed = TRUE))
+              .conn@session$setPreparedStatement(pair[1], pair[2])
+            }
+          }
+        }
+        if (content$updateType == 'DEALLOCATE') {
+          properties <-
+            httr::headers(response)[['x-presto-deallocated-prepare']]
+          if (!is.null(properties)) {
+            for (name in strsplit(properties, ',', fixed = TRUE)) {
+              .conn@session$unsetPreparedStatement(name)
+            }
+          }
+        }
+      }
+    },
+    extract_data = function(content) {
+      df <- extract.data(
+        content,
+        session.timezone = .conn@session.timezone,
+        output.timezone = .conn@output.timezone,
+        timestamp = .timestamp
+      )
+      return(df)
+    },
+    # Main functions
     request = function(type, statement = NULL) {
       headers <- request_headers()
+      ## Retry if 503
       if (type == 'POST') {
         if (!is.na(.next.uri)) {
           stop(
@@ -63,6 +108,8 @@ PrestoQuery2 <- setRefClass('PrestoQuery2',
           body = enc2utf8(statement),
           config = headers
         )
+        .timestamp <<-
+          lubridate::with_tz(response$date, tz = .conn@session.timezone)
       } else if (type == 'GET') {
         uri <- .next.uri
         response <- httr::GET(
@@ -78,14 +125,18 @@ PrestoQuery2 <- setRefClass('PrestoQuery2',
       } else {
         next.uri(content$nextUri)
         response$content <- NULL
+        update_session(content, response)
+        data <- extract_data(content)
         request_result <- list(
           type = type,
           uri = uri,
           state = content_state,
           response_sans_content = response,
-          content = content
+          ## redundancy when storing both content and data
+          content = content,
+          data = data
         )
-        append.request.result(request_result)
+        request.results(request_result)
       }
       invisible(TRUE)
     },
@@ -95,6 +146,11 @@ PrestoQuery2 <- setRefClass('PrestoQuery2',
         request('GET')
       }
       invisible(TRUE)
+    },
+    fetch_all = function() {
+      data_list <- purrr::map(.request.results, ~.$data)
+      df <- .combine_results(data_list)
+      return(df)
     }
   )
 )
