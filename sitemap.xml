@@ -25,6 +25,9 @@
     <loc>https://jarodmeng.github.io/RPresto/authors.html</loc>
   </url>
   <url>
+    <loc>https://jarodmeng.github.io/RPresto/backend-implementations.html</loc>
+  </url>
+  <url>
     <loc>https://jarodmeng.github.io/RPresto/index.html</loc>
   </url>
   <url>
@@ -37,10 +40,10 @@
     <loc>https://jarodmeng.github.io/RPresto/reference/PrestoConnection-class.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/PrestoCursor-class.html</loc>
+    <loc>https://jarodmeng.github.io/RPresto/reference/PrestoDriver-class.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/PrestoDriver-class.html</loc>
+    <loc>https://jarodmeng.github.io/RPresto/reference/PrestoQuery-class.html</loc>
   </url>
   <url>
     <loc>https://jarodmeng.github.io/RPresto/reference/PrestoResult-class.html</loc>
@@ -52,19 +55,34 @@
     <loc>https://jarodmeng.github.io/RPresto/reference/RPresto.html</loc>
   </url>
   <url>
+    <loc>https://jarodmeng.github.io/RPresto/reference/dbCreateTableAs.html</loc>
+  </url>
+  <url>
     <loc>https://jarodmeng.github.io/RPresto/reference/dbDataType.html</loc>
   </url>
   <url>
     <loc>https://jarodmeng.github.io/RPresto/reference/dbGetInfo.html</loc>
   </url>
   <url>
+    <loc>https://jarodmeng.github.io/RPresto/reference/dbplyr_edition.PrestoConnection.html</loc>
+  </url>
+  <url>
+    <loc>https://jarodmeng.github.io/RPresto/reference/dbplyr_function_implementations.html</loc>
+  </url>
+  <url>
     <loc>https://jarodmeng.github.io/RPresto/reference/dplyr_function_implementations.html</loc>
+  </url>
+  <url>
+    <loc>https://jarodmeng.github.io/RPresto/reference/dplyr_source_function_implementations.html</loc>
   </url>
   <url>
     <loc>https://jarodmeng.github.io/RPresto/reference/dummy_tables.html</loc>
   </url>
   <url>
     <loc>https://jarodmeng.github.io/RPresto/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jarodmeng.github.io/RPresto/reference/sqlCreateTableAs.html</loc>
   </url>
   <url>
     <loc>https://jarodmeng.github.io/RPresto/reference/src_presto.html</loc>
