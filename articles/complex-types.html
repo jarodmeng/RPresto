@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">RPresto</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.8.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
+  <a class="nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -75,7 +75,7 @@
       <img src="" class="logo" alt=""><h1>Translating complex Presto data types</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/vignettes/complex-types.Rmd" class="external-link"><code>vignettes/complex-types.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/vignettes/complex-types.Rmd"><code>vignettes/complex-types.Rmd</code></a></small>
       <div class="d-none name"><code>complex-types.Rmd</code></div>
     </div>
 
@@ -88,14 +88,14 @@ tibbles).</p>
 <h2 id="package-setup">Package setup<a class="anchor" aria-label="anchor" href="#package-setup"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jarodmeng.github.io/RPresto">RPresto</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/prestodb/RPresto">RPresto</a></span><span class="op">)</span></span></code></pre></div>
 <p>You can check your <code>RPresto</code> version by running the
 <code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion()</a></code> function. <strong>You need version 1.3.9
 or later to have a more comprehensive and robust complex types
 support.</strong></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"RPresto"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] '1.3.8.9000'</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] '1.4.0'</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
@@ -204,7 +204,7 @@ primitive Presto data types using the
 <code><a href="../reference/dummy_tables.html">create_primitive_arrays_table()</a></code> function included in the
 <code>RPresto</code> package.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_arrays_table</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">RPresto</span><span class="fu">:::</span><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_arrays_table</a></span><span class="op">(</span></span>
 <span>  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_arrays"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>We can check if the table now exists in Presto.</p>
@@ -218,12 +218,12 @@ types they represent.</p>
 <span><span class="co">#&gt;  [1] "array_boolean"                "array_tinyint"               </span></span>
 <span><span class="co">#&gt;  [3] "array_smallint"               "array_integer"               </span></span>
 <span><span class="co">#&gt;  [5] "array_bigint"                 "array_real"                  </span></span>
-<span><span class="co">#&gt;  [7] "array_double"                 "array_varchar"               </span></span>
-<span><span class="co">#&gt;  [9] "array_char"                   "array_varbinary"             </span></span>
-<span><span class="co">#&gt; [11] "array_date"                   "array_time"                  </span></span>
-<span><span class="co">#&gt; [13] "array_time_with_tz"           "array_timestamp"             </span></span>
-<span><span class="co">#&gt; [15] "array_timestamp_with_tz"      "array_interval_year_to_month"</span></span>
-<span><span class="co">#&gt; [17] "array_interval_day_to_second"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [7] "array_double"                 "array_decimal"               </span></span>
+<span><span class="co">#&gt;  [9] "array_varchar"                "array_char"                  </span></span>
+<span><span class="co">#&gt; [11] "array_varbinary"              "array_date"                  </span></span>
+<span><span class="co">#&gt; [13] "array_time"                   "array_time_with_tz"          </span></span>
+<span><span class="co">#&gt; [15] "array_timestamp"              "array_timestamp_with_tz"     </span></span>
+<span><span class="co">#&gt; [17] "array_interval_year_to_month" "array_interval_day_to_second"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="translate-arrays-to-r-vectors">Translate <code>ARRAY</code>s to R vectors<a class="anchor" aria-label="anchor" href="#translate-arrays-to-r-vectors"></a>
@@ -236,20 +236,21 @@ types they represent.</p>
 <span>    bigint <span class="op">=</span> <span class="st">"integer64"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 17</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 18</span></span></span>
 <span><span class="co">#&gt;   array_boolean array_…¹ array…² array…³ array…⁴ array…⁵ array…⁶ array…⁷ array…⁸</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;lgl [3]&gt;</span>     &lt;int&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int64&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 8 more variables: array_varbinary &lt;list&gt;, array_date &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   array_time &lt;list&gt;, array_time_with_tz &lt;list&gt;, array_timestamp &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   array_timestamp_with_tz &lt;list&gt;, array_interval_year_to_month &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   array_interval_day_to_second &lt;list&gt;, and abbreviated variable names</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ¹​array_tinyint, ²​array_smallint, ³​array_integer, ⁴​array_bigint,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ⁵​array_real, ⁶​array_double, ⁷​array_varchar, ⁸​array_char</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;lgl [3]&gt;</span>     &lt;int&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int64&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 9 more variables: array_char &lt;list&gt;, array_varbinary &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   array_date &lt;list&gt;, array_time &lt;list&gt;, array_time_with_tz &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   array_timestamp &lt;list&gt;, array_timestamp_with_tz &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   array_interval_year_to_month &lt;list&gt;, array_interval_day_to_second &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   and abbreviated variable names ¹​array_tinyint, ²​array_smallint,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ³​array_integer, ⁴​array_bigint, ⁵​array_real, ⁶​array_double, ⁷​array_decimal,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ⁸​array_varchar</span></span></span></code></pre></div>
 <p>We can verify the R types of each column.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html" class="external-link">enframe</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.array_of_primitive_types</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 2</span></span></span>
 <span><span class="co">#&gt;    name                         value    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> array_boolean                logical  </span></span>
@@ -259,16 +260,17 @@ types they represent.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> array_bigint                 integer64</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> array_real                   numeric  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> array_double                 numeric  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> array_varchar                character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> array_char                   character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> array_varbinary              list     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> array_date                   Date     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> array_time                   hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> array_time_with_tz           hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> array_timestamp              POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> array_timestamp_with_tz      POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> array_interval_year_to_month Duration </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> array_interval_day_to_second Duration</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> array_decimal                numeric  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> array_varchar                character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> array_char                   character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> array_varbinary              list     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> array_date                   Date     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> array_time                   hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> array_time_with_tz           hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> array_timestamp              POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> array_timestamp_with_tz      POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> array_interval_year_to_month Duration </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> array_interval_day_to_second Duration</span></span></code></pre></div>
 <p>All vectors are unnamed.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/every.html" class="external-link">every</a></span><span class="op">(</span><span class="va">df.array_of_primitive_types</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -278,7 +280,7 @@ the columns to get the <code>ARRAY</code> cardinality. It shows that all
 <code>ARRAY</code>s have 3 elements in them.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html" class="external-link">enframe</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_int</a></span><span class="op">(</span><span class="va">df.array_of_primitive_types</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 2</span></span></span>
 <span><span class="co">#&gt;    name                         value</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> array_boolean                    3</span></span>
@@ -288,16 +290,17 @@ the columns to get the <code>ARRAY</code> cardinality. It shows that all
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> array_bigint                     3</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> array_real                       3</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> array_double                     3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> array_varchar                    3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> array_char                       3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> array_varbinary                  3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> array_date                       3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> array_time                       3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> array_time_with_tz               3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> array_timestamp                  3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> array_timestamp_with_tz          3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> array_interval_year_to_month     3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> array_interval_day_to_second     3</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> array_decimal                    3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> array_varchar                    3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> array_char                       3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> array_varbinary                  3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> array_date                       3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> array_time                       3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> array_time_with_tz               3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> array_timestamp                  3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> array_timestamp_with_tz          3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> array_interval_year_to_month     3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> array_interval_day_to_second     3</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -321,7 +324,7 @@ primitive Presto data types using the
 <code><a href="../reference/dummy_tables.html">create_primitive_maps_table()</a></code> function included in the
 <code>RPresto</code> package.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_maps_table</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">RPresto</span><span class="fu">:::</span><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_maps_table</a></span><span class="op">(</span></span>
 <span>  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_maps"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>We can check if the table now exists in Presto.</p>
@@ -335,12 +338,12 @@ types they represent.</p>
 <span><span class="co">#&gt;  [1] "map_boolean"                "map_tinyint"               </span></span>
 <span><span class="co">#&gt;  [3] "map_smallint"               "map_integer"               </span></span>
 <span><span class="co">#&gt;  [5] "map_bigint"                 "map_real"                  </span></span>
-<span><span class="co">#&gt;  [7] "map_double"                 "map_varchar"               </span></span>
-<span><span class="co">#&gt;  [9] "map_char"                   "map_varbinary"             </span></span>
-<span><span class="co">#&gt; [11] "map_date"                   "map_time"                  </span></span>
-<span><span class="co">#&gt; [13] "map_time_with_tz"           "map_timestamp"             </span></span>
-<span><span class="co">#&gt; [15] "map_timestamp_with_tz"      "map_interval_year_to_month"</span></span>
-<span><span class="co">#&gt; [17] "map_interval_day_to_second"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [7] "map_double"                 "map_decimal"               </span></span>
+<span><span class="co">#&gt;  [9] "map_varchar"                "map_char"                  </span></span>
+<span><span class="co">#&gt; [11] "map_varbinary"              "map_date"                  </span></span>
+<span><span class="co">#&gt; [13] "map_time"                   "map_time_with_tz"          </span></span>
+<span><span class="co">#&gt; [15] "map_timestamp"              "map_timestamp_with_tz"     </span></span>
+<span><span class="co">#&gt; [17] "map_interval_year_to_month" "map_interval_day_to_second"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="translate-maps-to-r-vectors">Translate <code>MAP</code>s to R vectors<a class="anchor" aria-label="anchor" href="#translate-maps-to-r-vectors"></a>
@@ -353,20 +356,20 @@ types they represent.</p>
 <span>    bigint <span class="op">=</span> <span class="st">"integer64"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 17</span></span></span>
-<span><span class="co">#&gt;   map_boolean map_tiny…¹ map_s…² map_i…³ map_b…⁴ map_r…⁵ map_d…⁶ map_v…⁷ map_c…⁸</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 18</span></span></span>
+<span><span class="co">#&gt;   map_boolean map_tiny…¹ map_s…² map_i…³ map_b…⁴ map_r…⁵ map_d…⁶ map_d…⁷ map_v…⁸</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;lgl [3]&gt;</span>   <span style="color: #949494;">&lt;int [3]&gt;</span>  &lt;int&gt;   &lt;int&gt;   &lt;int64&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 8 more variables: map_varbinary &lt;list&gt;, map_date &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   map_time &lt;list&gt;, map_time_with_tz &lt;list&gt;, map_timestamp &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   map_timestamp_with_tz &lt;list&gt;, map_interval_year_to_month &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   map_interval_day_to_second &lt;list&gt;, and abbreviated variable names</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ¹​map_tinyint, ²​map_smallint, ³​map_integer, ⁴​map_bigint, ⁵​map_real,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ⁶​map_double, ⁷​map_varchar, ⁸​map_char</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;lgl [3]&gt;</span>   <span style="color: #949494;">&lt;int [3]&gt;</span>  &lt;int&gt;   &lt;int&gt;   &lt;int64&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 9 more variables: map_char &lt;list&gt;, map_varbinary &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   map_date &lt;list&gt;, map_time &lt;list&gt;, map_time_with_tz &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   map_timestamp &lt;list&gt;, map_timestamp_with_tz &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   map_interval_year_to_month &lt;list&gt;, map_interval_day_to_second &lt;list&gt;, and</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   abbreviated variable names ¹​map_tinyint, ²​map_smallint, ³​map_integer,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​map_bigint, ⁵​map_real, ⁶​map_double, ⁷​map_decimal, ⁸​map_varchar</span></span></span></code></pre></div>
 <p>We can verify the R types of each column.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html" class="external-link">enframe</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.map_of_primitive_types</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 2</span></span></span>
 <span><span class="co">#&gt;    name                       value    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> map_boolean                logical  </span></span>
@@ -376,16 +379,17 @@ types they represent.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> map_bigint                 integer64</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> map_real                   numeric  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> map_double                 numeric  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> map_varchar                character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> map_char                   character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> map_varbinary              list     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> map_date                   Date     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> map_time                   hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> map_time_with_tz           hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> map_timestamp              POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> map_timestamp_with_tz      POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> map_interval_year_to_month Duration </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> map_interval_day_to_second Duration</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> map_decimal                numeric  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> map_varchar                character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> map_char                   character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> map_varbinary              list     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> map_date                   Date     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> map_time                   hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> map_time_with_tz           hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> map_timestamp              POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> map_timestamp_with_tz      POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> map_interval_year_to_month Duration </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> map_interval_day_to_second Duration</span></span></code></pre></div>
 <p>All vectors are named.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/every.html" class="external-link">none</a></span><span class="op">(</span><span class="va">df.map_of_primitive_types</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -422,7 +426,7 @@ although it’s technically possible in Presto.</p>
 <p>We first create an <strong>array-of-maps</strong> table by using the
 <code><a href="../reference/dummy_tables.html">create_array_of_maps_table()</a></code> function.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/dummy_tables.html">create_array_of_maps_table</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">RPresto</span><span class="fu">:::</span><span class="fu"><a href="../reference/dummy_tables.html">create_array_of_maps_table</a></span><span class="op">(</span></span>
 <span>  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_array_of_maps"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>We can check if the table now exists in Presto.</p>
@@ -435,12 +439,12 @@ although it’s technically possible in Presto.</p>
 <span><span class="co">#&gt;  [1] "array_map_boolean"                "array_map_tinyint"               </span></span>
 <span><span class="co">#&gt;  [3] "array_map_smallint"               "array_map_integer"               </span></span>
 <span><span class="co">#&gt;  [5] "array_map_bigint"                 "array_map_real"                  </span></span>
-<span><span class="co">#&gt;  [7] "array_map_double"                 "array_map_varchar"               </span></span>
-<span><span class="co">#&gt;  [9] "array_map_char"                   "array_map_varbinary"             </span></span>
-<span><span class="co">#&gt; [11] "array_map_date"                   "array_map_time"                  </span></span>
-<span><span class="co">#&gt; [13] "array_map_time_with_tz"           "array_map_timestamp"             </span></span>
-<span><span class="co">#&gt; [15] "array_map_timestamp_with_tz"      "array_map_interval_year_to_month"</span></span>
-<span><span class="co">#&gt; [17] "array_map_interval_day_to_second"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [7] "array_map_double"                 "array_map_decimal"               </span></span>
+<span><span class="co">#&gt;  [9] "array_map_varchar"                "array_map_char"                  </span></span>
+<span><span class="co">#&gt; [11] "array_map_varbinary"              "array_map_date"                  </span></span>
+<span><span class="co">#&gt; [13] "array_map_time"                   "array_map_time_with_tz"          </span></span>
+<span><span class="co">#&gt; [15] "array_map_timestamp"              "array_map_timestamp_with_tz"     </span></span>
+<span><span class="co">#&gt; [17] "array_map_interval_year_to_month" "array_map_interval_day_to_second"</span></span></code></pre></div>
 <p>Let’s import all the data into R.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span></span>
@@ -450,21 +454,21 @@ although it’s technically possible in Presto.</p>
 <span>    bigint <span class="op">=</span> <span class="st">"integer64"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 17</span></span></span>
-<span><span class="co">#&gt;   map_boolean map_tiny…¹ map_s…² map_i…³ map_b…⁴ map_r…⁵ map_d…⁶ map_v…⁷ map_c…⁸</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 18</span></span></span>
+<span><span class="co">#&gt;   map_boolean map_tiny…¹ map_s…² map_i…³ map_b…⁴ map_r…⁵ map_d…⁶ map_d…⁷ map_v…⁸</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;lgl [3]&gt;</span>   <span style="color: #949494;">&lt;int [3]&gt;</span>  &lt;int&gt;   &lt;int&gt;   &lt;int64&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 8 more variables: map_varbinary &lt;list&gt;, map_date &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   map_time &lt;list&gt;, map_time_with_tz &lt;list&gt;, map_timestamp &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   map_timestamp_with_tz &lt;list&gt;, map_interval_year_to_month &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   map_interval_day_to_second &lt;list&gt;, and abbreviated variable names</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ¹​map_tinyint, ²​map_smallint, ³​map_integer, ⁴​map_bigint, ⁵​map_real,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ⁶​map_double, ⁷​map_varchar, ⁸​map_char</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;lgl [3]&gt;</span>   <span style="color: #949494;">&lt;int [3]&gt;</span>  &lt;int&gt;   &lt;int&gt;   &lt;int64&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 9 more variables: map_char &lt;list&gt;, map_varbinary &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   map_date &lt;list&gt;, map_time &lt;list&gt;, map_time_with_tz &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   map_timestamp &lt;list&gt;, map_timestamp_with_tz &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   map_interval_year_to_month &lt;list&gt;, map_interval_day_to_second &lt;list&gt;, and</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   abbreviated variable names ¹​map_tinyint, ²​map_smallint, ³​map_integer,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​map_bigint, ⁵​map_real, ⁶​map_double, ⁷​map_decimal, ⁸​map_varchar</span></span></span></code></pre></div>
 <p>We need to pry open the wrapping unnamed list to reveal the types of
 the vectors underneath.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html" class="external-link">enframe</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.array_of_maps</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 2</span></span></span>
 <span><span class="co">#&gt;    name                       value    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> map_boolean                logical  </span></span>
@@ -474,16 +478,17 @@ the vectors underneath.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> map_bigint                 integer64</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> map_real                   numeric  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> map_double                 numeric  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> map_varchar                character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> map_char                   character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> map_varbinary              raw      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> map_date                   Date     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> map_time                   hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> map_time_with_tz           hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> map_timestamp              POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> map_timestamp_with_tz      POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> map_interval_year_to_month Duration </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> map_interval_day_to_second Duration</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> map_decimal                numeric  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> map_varchar                character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> map_char                   character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> map_varbinary              raw      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> map_date                   Date     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> map_time                   hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> map_time_with_tz           hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> map_timestamp              POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> map_timestamp_with_tz      POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> map_interval_year_to_month Duration </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> map_interval_day_to_second Duration</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -532,7 +537,7 @@ package. The resulting table has only 1 column named
 <code>row_primitive_types</code> which is a <code>ROW</code> that
 includes 17 sub-columns representing all supported primitive types.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_rows_table</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">RPresto</span><span class="fu">:::</span><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_rows_table</a></span><span class="op">(</span></span>
 <span>  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_rows"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>We can check if the table now exists in Presto.</p>
@@ -555,15 +560,15 @@ includes 17 sub-columns representing all supported primitive types.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 1</span></span></span>
 <span><span class="co">#&gt;   row_primitive_types</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;named list [17]&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">&lt;named list [17]&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #949494;">&lt;named list [17]&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;named list [18]&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">&lt;named list [18]&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #949494;">&lt;named list [18]&gt;</span></span></span></code></pre></div>
 <p>We can check the R types of each element in the named list.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html" class="external-link">enframe</a></span><span class="op">(</span></span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.row_of_primitive</span><span class="op">$</span><span class="va">row_primitive_types</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 2</span></span></span>
 <span><span class="co">#&gt;    name                   value    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> boolean                logical  </span></span>
@@ -573,16 +578,17 @@ includes 17 sub-columns representing all supported primitive types.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> bigint                 integer64</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> real                   numeric  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> double                 numeric  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> varchar                character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> char                   character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> varbinary              list     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> date                   Date     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> time                   hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> time_with_tz           hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> timestamp              POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> timestamp_with_tz      POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> interval_year_to_month Duration </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> interval_day_to_second Duration</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> decimal                numeric  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> varchar                character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> char                   character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> varbinary              list     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> date                   Date     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> time                   hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> time_with_tz           hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> timestamp              POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> timestamp_with_tz      POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> interval_year_to_month Duration </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> interval_day_to_second Duration</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="repeated-rows-translation">Repeated <code>ROW</code>s translation<a class="anchor" aria-label="anchor" href="#repeated-rows-translation"></a>
@@ -590,7 +596,7 @@ includes 17 sub-columns representing all supported primitive types.</p>
 <p>To construct a repeated <code>ROW</code> column, we use the auxiliary
 <code><a href="../reference/dummy_tables.html">create_array_of_rows_table()</a></code> function.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/dummy_tables.html">create_array_of_rows_table</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">RPresto</span><span class="fu">:::</span><span class="fu"><a href="../reference/dummy_tables.html">create_array_of_rows_table</a></span><span class="op">(</span></span>
 <span>  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_array_of_rows"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>We can check if the table now exists in Presto and the field
@@ -613,15 +619,15 @@ name.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 1</span></span></span>
 <span><span class="co">#&gt;   array_of_rows    </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;tibble [2 × 17]&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">&lt;tibble [2 × 17]&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #949494;">&lt;tibble [2 × 17]&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;tibble [2 × 18]&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">&lt;tibble [2 × 18]&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #949494;">&lt;tibble [2 × 18]&gt;</span></span></span></code></pre></div>
 <p>We can verify the tibble’s column types.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html" class="external-link">enframe</a></span><span class="op">(</span></span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.array_of_rows</span><span class="op">$</span><span class="va">array_of_rows</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 2</span></span></span>
 <span><span class="co">#&gt;    name                   value    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> boolean                logical  </span></span>
@@ -631,16 +637,17 @@ name.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> bigint                 integer64</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> real                   numeric  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> double                 numeric  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> varchar                character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> char                   character</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> varbinary              list     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> date                   Date     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> time                   hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> time_with_tz           hms      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> timestamp              POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> timestamp_with_tz      POSIXct  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> interval_year_to_month Duration </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> interval_day_to_second Duration</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> decimal                numeric  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> varchar                character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> char                   character</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> varbinary              list     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> date                   Date     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> time                   hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> time_with_tz           hms      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> timestamp              POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> timestamp_with_tz      POSIXct  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> interval_year_to_month Duration </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> interval_day_to_second Duration</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

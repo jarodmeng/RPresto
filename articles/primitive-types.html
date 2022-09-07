@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">RPresto</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.8.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
+  <a class="nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -75,7 +75,7 @@
       <img src="" class="logo" alt=""><h1>Primitive Presto data types to R types</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/vignettes/primitive-types.Rmd" class="external-link"><code>vignettes/primitive-types.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/vignettes/primitive-types.Rmd"><code>vignettes/primitive-types.Rmd</code></a></small>
       <div class="d-none name"><code>primitive-types.Rmd</code></div>
     </div>
 
@@ -87,14 +87,14 @@ translated into R types in the <code>RPresto</code> package.</p>
 <h2 id="package-setup">Package setup<a class="anchor" aria-label="anchor" href="#package-setup"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jarodmeng.github.io/RPresto">RPresto</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/prestodb/RPresto">RPresto</a></span><span class="op">)</span></span></code></pre></div>
 <p>You can check your <code>RPresto</code> version by running the
 <code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion()</a></code> function. <strong>You need version 1.3.9
 or later to have a more comprehensive and robust primitive types
 support.</strong></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"RPresto"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] '1.3.8.9000'</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] '1.4.0'</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
@@ -256,7 +256,7 @@ one column for each supported Presto type).</p>
 <code><a href="../reference/dummy_tables.html">create_primitive_types_table()</a></code> function included in the
 package.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_types_table</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">RPresto</span><span class="fu">:::</span><span class="fu"><a href="../reference/dummy_tables.html">create_primitive_types_table</a></span><span class="op">(</span></span>
 <span>  <span class="va">con</span>, table_name <span class="op">=</span> <span class="st">"presto_primitive_types"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>We can check if the table now exists in Presto.</p>
@@ -269,10 +269,10 @@ types they represent.</p>
 <code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListFields.html" class="external-link">dbListFields</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_primitive_types"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "boolean"                "tinyint"                "smallint"              </span></span>
 <span><span class="co">#&gt;  [4] "integer"                "bigint"                 "real"                  </span></span>
-<span><span class="co">#&gt;  [7] "double"                 "varchar"                "char"                  </span></span>
-<span><span class="co">#&gt; [10] "varbinary"              "date"                   "time"                  </span></span>
-<span><span class="co">#&gt; [13] "time_with_tz"           "timestamp"              "timestamp_with_tz"     </span></span>
-<span><span class="co">#&gt; [16] "interval_year_to_month" "interval_day_to_second"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [7] "double"                 "decimal"                "varchar"               </span></span>
+<span><span class="co">#&gt; [10] "char"                   "varbinary"              "date"                  </span></span>
+<span><span class="co">#&gt; [13] "time"                   "time_with_tz"           "timestamp"             </span></span>
+<span><span class="co">#&gt; [16] "timestamp_with_tz"      "interval_year_to_month" "interval_day_to_second"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

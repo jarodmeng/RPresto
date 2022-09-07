@@ -32,7 +32,7 @@
     
     <a class="navbar-brand me-2" href="index.html">RPresto</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.8.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +61,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
+  <a class="nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -76,136 +76,194 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="rpresto">RPresto<a class="anchor" aria-label="anchor" href="#rpresto"></a>
 </h1></div>
-<p>RPresto is a <a href="https://github.com/r-dbi/DBI" class="external-link">DBI</a>-based adapter for the open source distributed SQL query engine <a href="https://prestodb.io/" class="external-link">Presto</a> for running interactive analytic queries.</p>
+<!-- badges: start -->
+<!-- badges: end -->
+<p>RPresto is a <a href="https://dbi.r-dbi.org/" class="external-link">DBI</a>-based adapter for the open source distributed SQL query engine <a href="https://prestodb.io/" class="external-link">Presto</a> for running interactive analytic queries.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>RPresto is both on <a href="https://cran.r-project.org/package=RPresto" class="external-link">CRAN</a> and <a href="https://github.com/prestodb/RPresto" class="external-link">github</a>. For the CRAN version, you can use</p>
+<p>RPresto is both on <a href="https://cran.r-project.org/package=RPresto" class="external-link">CRAN</a> and <a href="https://github.com/prestodb/RPresto">github</a>.</p>
+<p>For the CRAN version, you can use</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'RPresto'</span><span class="op">)</span></span></code></pre></div>
-<p>You can install the github development version via</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"RPresto"</span><span class="op">)</span></span></code></pre></div>
+<p>You can install the development version of RPresto from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">'prestodb/RPresto'</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"prestodb/RPresto"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>The standard DBI approach works with RPresto:</p>
+<p><strong>The following examples assume that you have a in-memory Presto server set up locally.</strong> It’s the simplest server which stores all data and metadata in RAM on workers and both are discarded when Presto restarts. If you don’t have one set up, please refer to the <a href="https://prestodb.io/docs/current/connector/memory.html" class="external-link">memory connector documentation</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dbi.r-dbi.org" class="external-link">'DBI'</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Load libaries and connect to Presto</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/prestodb/RPresto">RPresto</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org" class="external-link">DBI</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span></span>
-<span>  <span class="fu">RPresto</span><span class="fu">::</span><span class="fu"><a href="reference/Presto.html">Presto</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  host<span class="op">=</span><span class="st">'http://localhost'</span>,</span>
-<span>  port<span class="op">=</span><span class="fl">7777</span>,</span>
-<span>  user<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">'USER'</span><span class="op">)</span>,</span>
-<span>  schema<span class="op">=</span><span class="st">'&lt;schema&gt;'</span>,</span>
-<span>  catalog<span class="op">=</span><span class="st">'&lt;catalog&gt;'</span>,</span>
-<span>  source<span class="op">=</span><span class="st">'&lt;source&gt;'</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html" class="external-link">dbSendQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">'SELECT 1'</span><span class="op">)</span></span>
-<span><span class="co"># dbFetch without arguments only returns the current chunk, so we need to</span></span>
-<span><span class="co"># loop until the query completes.</span></span>
-<span><span class="kw">while</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbHasCompleted.html" class="external-link">dbHasCompleted</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">chunk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbFetch.html" class="external-link">dbFetch</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">chunk</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html" class="external-link">dbSendQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">'SELECT CAST(NULL AS VARCHAR)'</span><span class="op">)</span></span>
-<span><span class="co"># Due to the unpredictability of chunk sizes with presto, we do not support</span></span>
-<span><span class="co"># custom number of rows</span></span>
-<span><span class="co"># testthat::expect_error(dbFetch(res, 5))</span></span>
-<span></span>
-<span><span class="co"># To get all rows using dbFetch, pass in a -1 argument</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbFetch.html" class="external-link">dbFetch</a></span><span class="op">(</span><span class="va">res</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># An alternative is to use dbGetQuery directly</span></span>
-<span></span>
-<span><span class="co"># `source` for iris.sql()</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'tests'</span>, <span class="st">'testthat'</span>, <span class="st">'utilities.R'</span>, package<span class="op">=</span><span class="st">'RPresto'</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">iris</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"SELECT * FROM"</span>, <span class="fu">iris.sql</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html" class="external-link">dbDisconnect</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
-<p>We also include <a href="https://github.com/tidyverse/dplyr" class="external-link">dplyr</a> integration.</p>
+<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span></span>
+<span>  drv <span class="op">=</span> <span class="fu">RPresto</span><span class="fu">::</span><span class="fu"><a href="reference/Presto.html">Presto</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  host <span class="op">=</span> <span class="st">"http://localhost"</span>,</span>
+<span>  port <span class="op">=</span> <span class="fl">8080</span>,</span>
+<span>  user <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"USER"</span><span class="op">)</span>,</span>
+<span>  catalog <span class="op">=</span> <span class="st">"memory"</span>,</span>
+<span>  schema <span class="op">=</span> <span class="st">"default"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>There are two levels of APIs: <code>DBI</code> and <code>dplyr</code>.</p>
+<div class="section level3">
+<h3 id="dbi-apis">
+<code>DBI</code> APIs<a class="anchor" aria-label="anchor" href="#dbi-apis"></a>
+</h3>
+<p>The easiest and most flexible way of executing a <code>SELECT</code> query is using a <a href="https://dbi.r-dbi.org/reference/dbgetquery" class="external-link"><code>dbGetQuery()</code></a> call. It returns the query result in a <a href="https://tibble.tidyverse.org/" class="external-link"><code>tibble</code></a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/src_presto.html">src_presto</a></span><span class="op">(</span></span>
-<span>  host<span class="op">=</span><span class="st">'http://localhost'</span>,</span>
-<span>  port<span class="op">=</span><span class="fl">7777</span>,</span>
-<span>  user<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">'USER'</span><span class="op">)</span>,</span>
-<span>  schema<span class="op">=</span><span class="st">'&lt;schema&gt;'</span>,</span>
-<span>  catalog<span class="op">=</span><span class="st">'&lt;catalog&gt;'</span>,</span>
-<span>  source<span class="op">=</span><span class="st">'&lt;source&gt;'</span></span>
+<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"SELECT CAST(3.14 AS DOUBLE) AS pi"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span><span class="co">#&gt;      pi</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  3.14</span></span></code></pre></div>
+<p><a href="https://dbi.r-dbi.org/reference/dbwritetable" class="external-link"><code>dbWriteTable()</code></a> can be used to write a small data frame into a Presto table.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Writing mtcars data frame into Presto</span></span>
+<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span>, <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
+<p><a href="https://dbi.r-dbi.org/reference/dbexiststable" class="external-link"><code>dbExistsTable()</code></a> checks if a table exists.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p><a href="https://dbi.r-dbi.org/reference/dbreadtable" class="external-link"><code>dbReadTable()</code></a> reads the entire table into R. It’s essentially a <code>SELECT *</code> query on the table.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html" class="external-link">dbReadTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 32 × 11</span></span>
+<span><span class="co">#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
+<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4</span></span>
+<span><span class="co">#&gt;  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4</span></span>
+<span><span class="co">#&gt;  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1</span></span>
+<span><span class="co">#&gt;  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1</span></span>
+<span><span class="co">#&gt;  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2</span></span>
+<span><span class="co">#&gt;  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1</span></span>
+<span><span class="co">#&gt;  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4</span></span>
+<span><span class="co">#&gt;  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2</span></span>
+<span><span class="co">#&gt;  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2</span></span>
+<span><span class="co">#&gt; 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4</span></span>
+<span><span class="co">#&gt; # … with 22 more rows</span></span></code></pre></div>
+<p><a href="https://dbi.r-dbi.org/reference/dbremovetable" class="external-link"><code>dbRemoveTable()</code></a> drops the table from Presto.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbRemoveTable.html" class="external-link">dbRemoveTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span></code></pre></div>
+<p>You can execute a statement and returns the number of rows affected using <a href="https://dbi.r-dbi.org/reference/dbexecute" class="external-link"><code>dbExecute()</code></a>.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create an empty table using CREATE TABLE</span></span>
+<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExecute.html" class="external-link">dbExecute</a></span><span class="op">(</span></span>
+<span>  <span class="va">con</span>, <span class="st">"CREATE TABLE testing_table (field1 BIGINT, field2 VARCHAR)"</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<p><code><a href="https://dbi.r-dbi.org/reference/dbExecute.html" class="external-link">dbExecute()</a></code> returns the number of rows affected by the statement. Since a <code>CREATE TABLE</code> statement creates an empty table, it returns 0.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExecute.html" class="external-link">dbExecute</a></span><span class="op">(</span></span>
+<span>  <span class="va">con</span>,</span>
+<span>  <span class="st">"INSERT INTO testing_table VALUES (1, 'abc'), (2, 'xyz')"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+<p>Since 2 rows are inserted into the table, it returns 2.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Check the previous INSERT statment works</span></span>
+<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html" class="external-link">dbReadTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"testing_table"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
+<span><span class="co">#&gt;   field1 field2</span></span>
+<span><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt; 1      1 abc   </span></span>
+<span><span class="co">#&gt; 2      2 xyz</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="dplyr-apis">
+<code>dplyr</code> APIs<a class="anchor" aria-label="anchor" href="#dplyr-apis"></a>
+</h3>
+<p>We also include <code>dplyr</code> database backend integration (which is mainly implemented using the <a href="https://dbplyr.tidyverse.org/" class="external-link"><code>dbplyr</code> package</a>).</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load packages</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/" class="external-link">dbplyr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Assuming you have a table like iris in the database</span></span>
-<span><span class="va">iris</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">db</span>, <span class="st">'iris'</span><span class="op">)</span></span>
+<span><span class="co"># Add iris to Presto</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span>, <span class="va">iris</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link"><code>dplyr::tbl()</code></a> can work directly on <code>PrestoConnection</code> object.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Treat "iris" in Presto as a remote data source that dplyr can now manipulate</span></span>
+<span><span class="va">tbl.iris</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="co"># colnames() gives the column names</span></span>
+<span><span class="va">tbl.iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "sepal.length" "sepal.width"  "petal.length" "petal.width"  "species"</span></span>
+<span></span>
+<span><span class="co"># dplyr verbs can be applied onto the remote data source</span></span>
+<span><span class="va">tbl.iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>mean_sepal_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">sepal_length</span>, <span class="fl">0.0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span></span>
+<span>    mean_sepal_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">sepal.length</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   species    mean_sepal_length</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 setosa                  5.01</span></span>
+<span><span class="co">#&gt; 2 versicolor              5.94</span></span>
+<span><span class="co">#&gt; 3 virginica               6.59</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="connecting-to-trino">Connecting to Trino<a class="anchor" aria-label="anchor" href="#connecting-to-trino"></a>
 </h2>
 <p>To connect to Trino you must set the <code>use.trino.headers</code> parameter so <code>RPresto</code> knows to send the correct headers to the server. Otherwise all the same functionality is supported.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dbi.r-dbi.org" class="external-link">'DBI'</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">con.trino</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span></span>
 <span>  <span class="fu">RPresto</span><span class="fu">::</span><span class="fu"><a href="reference/Presto.html">Presto</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  use.trino.headers<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>  host<span class="op">=</span><span class="st">'http://localhost'</span>,</span>
+<span>  host<span class="op">=</span><span class="st">"http://localhost"</span>,</span>
 <span>  port<span class="op">=</span><span class="fl">7777</span>,</span>
-<span>  user<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">'USER'</span><span class="op">)</span>,</span>
-<span>  schema<span class="op">=</span><span class="st">'&lt;schema&gt;'</span>,</span>
-<span>  catalog<span class="op">=</span><span class="st">'&lt;catalog&gt;'</span>,</span>
-<span>  source<span class="op">=</span><span class="st">'&lt;source&gt;'</span></span>
+<span>  user<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"USER"</span><span class="op">)</span>,</span>
+<span>  schema<span class="op">=</span><span class="st">"&lt;schema&gt;"</span>,</span>
+<span>  catalog<span class="op">=</span><span class="st">"&lt;catalog&gt;"</span>,</span>
+<span>  source<span class="op">=</span><span class="st">"&lt;source&gt;"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="passing-extra-credentials-to-the-connector">Passing Extra Credentials to the Connector<a class="anchor" aria-label="anchor" href="#passing-extra-credentials-to-the-connector"></a>
+<h2 id="passing-extra-credentials-to-the-connector">Passing extra credentials to the connector<a class="anchor" aria-label="anchor" href="#passing-extra-credentials-to-the-connector"></a>
 </h2>
-<p>To pass extraCredentials that gets added to the <code>X-Presto-Extra-Credential</code> header use the <code>extra.credentials</code> parameter so <code>RPresto</code> will add that to the header while creating the PrestoConnection.</p>
+<p>To pass extraCredentials that gets added to the <code>X-Presto-Extra-Credential</code> header use the <code>extra.credentials</code> parameter so <code>RPresto</code> will add that to the header while creating the <code>PrestoConnection</code>.</p>
 <p>Set <code>use.trino.headers</code> if you want to pass extraCredentials through the <code>X-Trino-Extra-Credential</code> header.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dbi.r-dbi.org" class="external-link">'DBI'</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span></span>
 <span>  <span class="fu">RPresto</span><span class="fu">::</span><span class="fu"><a href="reference/Presto.html">Presto</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  host<span class="op">=</span><span class="st">'http://localhost'</span>,</span>
+<span>  host<span class="op">=</span><span class="st">"http://localhost"</span>,</span>
 <span>  port<span class="op">=</span><span class="fl">7777</span>,</span>
-<span>  user<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">'USER'</span><span class="op">)</span>,</span>
-<span>  schema<span class="op">=</span><span class="st">'&lt;schema&gt;'</span>,</span>
-<span>  catalog<span class="op">=</span><span class="st">'&lt;catalog&gt;'</span>,</span>
-<span>  source<span class="op">=</span><span class="st">'&lt;source&gt;'</span>,</span>
+<span>  user<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"USER"</span><span class="op">)</span>,</span>
+<span>  schema<span class="op">=</span><span class="st">"&lt;schema&gt;"</span>,</span>
+<span>  catalog<span class="op">=</span><span class="st">"&lt;catalog&gt;"</span>,</span>
+<span>  source<span class="op">=</span><span class="st">"&lt;source&gt;"</span>,</span>
 <span>  extra.credentials<span class="op">=</span><span class="st">"test.token.foo=bar"</span>,</span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="how-rpresto-works">How RPresto works<a class="anchor" aria-label="anchor" href="#how-rpresto-works"></a>
 </h2>
-<p>Presto exposes its interface via a REST based API<sup>1</sup>. We utilize the <a href="https://github.com/r-lib/httr" class="external-link">httr</a> package to make the API calls and use <a href="https://github.com/jeroen/jsonlite" class="external-link">jsonlite</a> to reshape the data into a <code>tibble</code>. Note that as of now, only read operations are supported.</p>
+<p>Presto exposes its interface via a REST based API<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;See &lt;a href="https://github.com/prestodb/presto/wiki/HTTP-Protocol" class="external-link uri"&gt;https://github.com/prestodb/presto/wiki/HTTP-Protocol&lt;/a&gt; for a description of the API.&lt;/p&gt;'><sup>1</sup></a>. We utilize the <a href="https://github.com/r-lib/httr" class="external-link">httr</a> package to make the API calls and use <a href="https://github.com/jeroen/jsonlite" class="external-link">jsonlite</a> to reshape the data into a <code>tibble</code>. Note that as of now, only read operations are supported.</p>
 <p>RPresto has been tested on Presto 0.100.</p>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
 </h2>
 <p>RPresto is BSD-licensed.</p>
-<p>[1] See <a href="https://github.com/prestodb/presto/wiki/HTTP-Protocol" class="external-link uri">https://github.com/prestodb/presto/wiki/HTTP-Protocol</a> for a description of the API.</p>
 </div>
 </div>
+
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=RPresto" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/prestodb/RPresto/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/prestodb/RPresto/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/prestodb/RPresto/">Browse source code</a></li>
+<li><a href="https://github.com/prestodb/RPresto/issues">Report a bug</a></li>
 </ul>
 </div>
 

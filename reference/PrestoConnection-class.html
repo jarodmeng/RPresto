@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">RPresto</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.8.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
+  <a class="nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -48,7 +48,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>S4 implementation of <code>DBIConnection</code> for Presto.</h1>
-      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/PrestoConnection.R" class="external-link"><code>R/PrestoConnection.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbCreateTable.R" class="external-link"><code>R/dbCreateTable.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbCreateTableAs.R" class="external-link"><code>R/dbCreateTableAs.R</code></a>, and 8 more</small>
+      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/PrestoConnection.R"><code>R/PrestoConnection.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbCreateTable.R"><code>R/dbCreateTable.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbCreateTableAs.R"><code>R/dbCreateTableAs.R</code></a>, and 9 more</small>
       <div class="d-none name"><code>PrestoConnection-class.Rd</code></div>
     </div>
 
@@ -92,6 +92,19 @@
 <span></span>
 <span><span class="co"># S4 method for PrestoConnection,character</span></span>
 <span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html" class="external-link">dbSendQuery</a></span><span class="op">(</span><span class="va">conn</span>, <span class="va">statement</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for PrestoConnection,character,data.frame</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span></span>
+<span>  <span class="va">conn</span>,</span>
+<span>  <span class="va">name</span>,</span>
+<span>  <span class="va">value</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  append <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  field.types <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  temporary <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  row.names <span class="op">=</span> <span class="cn">NA</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for PrestoConnection</span></span>
 <span><span class="fu"><a href="https://dbi.r-dbi.org/reference/sqlCreateTable.html" class="external-link">sqlCreateTable</a></span><span class="op">(</span></span>
@@ -142,14 +155,6 @@ Field types are unescaped.</p>
 <dd><p>Other parameters passed on to methods.</p></dd>
 
 
-<dt>row.names</dt>
-<dd><p>Must be <code>NULL</code>.</p></dd>
-
-
-<dt>temporary</dt>
-<dd><p>If <code>TRUE</code>, will generate a temporary table statement.</p></dd>
-
-
 <dt>statement</dt>
 <dd><p>a character string containing SQL.</p></dd>
 
@@ -162,6 +167,21 @@ e.g. ‘%test%’</p></dd>
 <dt>fail_if_missing</dt>
 <dd><p>If `FALSE`, `dbRemoveTable()` succeeds if the
 table doesn't exist.</p></dd>
+
+
+<dt>value</dt>
+<dd><p>a <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> (or coercible to data.frame).</p></dd>
+
+
+<dt>overwrite</dt>
+<dd><p>a logical specifying whether to overwrite an existing table
+or not. Its default is `FALSE`.</p></dd>
+
+
+<dt>append, field.types, temporary, row.names</dt>
+<dd><p>Ignored. Included for
+compatibility with
+generic.</p></dd>
 
 
 <dt>con</dt>

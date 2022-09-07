@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="index.html">RPresto</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.8.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
+  <a class="nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -48,7 +48,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>RPresto’s implmentation of DBI and dplyr backends</h1>
-      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/backend-implementations.md" class="external-link"><code>backend-implementations.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/backend-implementations.md"><code>backend-implementations.md</code></a></small>
     </div>
 
 <div id="rprestos-implmentation-of-dbi-and-dplyr-backends" class="section level1">
@@ -73,6 +73,9 @@
 <li>The <code>dbExistsTable()</code> method is implemented in <code>dbExistsTable.R</code>.</li>
 <li>The <code>dbGetQuery()</code> method is implemented in <code>dbGetQuery.R</code>.</li>
 <li>The <code>dbListTables()</code> method is implemented in <code>dbListTables.R</code>.</li>
+<li>The <code>dbCreateTable()</code> method is implemented in <code>sqlCreateTable.R</code> and <code>dbCreateTable.R</code>.</li>
+<li>The <code><a href="reference/dbCreateTableAs.html">dbCreateTableAs()</a></code> method is implemented in <code>sqlCreateTableAs.R</code> and <code>dbCreateTableAs.R</code>.</li>
+<li>The <code>dbWriteTable()</code> method is implemented in <code>dbWriteTable.R</code>.</li>
 </ul></li>
 <li>
 <code>PrestoResult</code>: <code>PrestoResult.R</code>
@@ -97,8 +100,8 @@
 <h2 id="dplyr-remote-database-backend">
 <code>dplyr</code> remote database backend<a class="anchor" aria-label="anchor" href="#dplyr-remote-database-backend"></a></h2>
 <p>RPresto implements a number of <code>dplyr</code>’s <code>db_</code> generics that execute actions on the underlying database. * The <code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_desc()</a></code> method is implemented in <code>db_desc.PrestoConnection.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_data_type()</a></code> method is implemented in <code>db.data.type.PrestoConnection.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_explain()</a></code> method is implemented in <code>db.explain.PrestoConnection.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_query_rows()</a></code> method is explicitly not implemented in <code>db.query.rows.PrestoConnection.R</code>.</p>
-<p><code>dplyr</code> has a concept called “remote database source” that’s basically a wrapper around a DBI database connection object (i.e. <code>PrestoConnection</code>). * The <code>src_presto</code> object is defined in <code>src.presto.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">dplyr::copy_to()</a></code> method is explicitly not implemented in <code>copy.to.src.presto.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">dplyr::tbl()</a></code> method is implemented in <code>tbl.src.presto.R</code>.</p>
-<p>The <code>dplyr</code> database backend also relies on implementation of a few <code>dbplyr</code> methods. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-misc.html" class="external-link">dbplyr::dbplyr_edition()</a></code> method is implemented in <code>dbplyr.edition.PrestoConnection.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-quote.html" class="external-link">dbplyr::sql_escape_date()</a></code> method is implemented in <code>sql_escape_date.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-quote.html" class="external-link">dbplyr::sql_escape_datetime()</a></code> method is implemented in <code>sql_escape_datetime.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-sql.html" class="external-link">dbplyr::sql_translation()</a></code> method is implemented in <code>sql_translation.R</code>.</p>
+<p><code>dplyr</code> has a concept called “remote database source” that’s basically a wrapper around a DBI database connection object (i.e. <code>PrestoConnection</code>). * The <code>src_presto</code> object is defined in <code>src.presto.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">dplyr::copy_to()</a></code> method is explicitly not implemented in <code>copy.to.src.presto.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">dplyr::tbl()</a></code> method is implemented in <code>tbl.src.presto.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">dplyr::collect()</a></code> method is implemented in <code>src.presto.R</code>.</p>
+<p>The <code>dplyr</code> database backend also relies on implementation of a few <code>dbplyr</code> methods. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-misc.html" class="external-link">dbplyr::dbplyr_edition()</a></code> method is implemented in <code>dbplyr.edition.PrestoConnection.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-io.html" class="external-link">dbplyr::db_collect()</a></code> method is implemented in <code>db_collect.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-quote.html" class="external-link">dbplyr::sql_escape_date()</a></code> method is implemented in <code>sql_escape_date.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-quote.html" class="external-link">dbplyr::sql_escape_datetime()</a></code> method is implemented in <code>sql_escape_datetime.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-sql.html" class="external-link">dbplyr::sql_translation()</a></code> method is implemented in <code>sql_translation.R</code>.</p>
 </div>
 </div>
 

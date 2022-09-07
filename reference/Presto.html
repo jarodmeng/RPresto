@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">RPresto</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.8.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
+  <a class="nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -48,7 +48,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Connect to a Presto database</h1>
-      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/Presto.R" class="external-link"><code>R/Presto.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbConnect.R" class="external-link"><code>R/dbConnect.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbDisconnect.R" class="external-link"><code>R/dbDisconnect.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/Presto.R"><code>R/Presto.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbConnect.R"><code>R/dbConnect.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbDisconnect.R"><code>R/dbDisconnect.R</code></a></small>
       <div class="d-none name"><code>Presto.Rd</code></div>
     </div>
 
@@ -140,7 +140,7 @@ to an empty string.</p></dd>
 
 
 <dt>bigint</dt>
-<dd><p>The R type that Presto's 64-bit integer (<code>BIGINT</code>) types should
+<dd><p>The R type that Presto's 64-bit integer (<code>BIGINT</code>) class should
 be translated to. The default is <code>"integer"</code>, which returns R's
 <code>integer</code> type, but results in <code>NA</code> for values above/below
 +/-2147483647. <code>"integer64"</code> returns a <a href="https://rdrr.io/pkg/bit64/man/bit64-package.html" class="external-link">bit64::integer64</a>, which

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">RPresto</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.8.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
+  <a class="nav-link" href="https://github.com/prestodb/RPresto/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -48,35 +48,34 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/NEWS.md"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.3.8.9000" id="rpresto-1389000">RPresto 1.3.8.9000<a class="anchor" aria-label="anchor" href="#rpresto-1389000"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.4.0" id="rpresto-140">RPresto 1.4.0<a class="anchor" aria-label="anchor" href="#rpresto-140"></a></h2>
 <ul><li>Major refactoring of the internal schema and data parsing functions to enable more robust mapping between Presto data types and R types
 <ul><li>The output is changed from <code>data.frame</code> to <code>tibble</code> to offer better printing and be more consistent with other DBI-compatible datawarehouse packages</li>
 <li>Add more user-friendly R types translation for primitive Presto data types (e.g., DATE types are now translated to <code>Date</code> classes in R; TIMESTAMP types are translated to <code>POSIXct</code> classes; TIME types are translated to <code>difftime</code> classes; INTERVAL types are translated to <code>Duration</code> classes)</li>
-<li>Enable more choices of BIGINT type handling (i.e., <code>integer64</code>, <code>integer</code>, <code>numeric</code>, or <code>character</code>). (<a href="https://github.com/prestodb/RPresto/issues/61" class="external-link">#61</a>)</li>
-<li>Add complete support for complex Presto types (i.e., ARRAY, MAP, and ROW). They are now translated to typed vectors, lists, or tibbles depending on the types and structure of the data. (<a href="https://github.com/prestodb/RPresto/issues/118" class="external-link">#118</a>)</li>
+<li>Enable more choices of BIGINT type handling (i.e., <code>integer64</code>, <code>integer</code>, <code>numeric</code>, or <code>character</code>). (<a href="https://github.com/prestodb/RPresto/issues/61">#61</a>)</li>
+<li>Add complete support for complex Presto types (i.e., ARRAY, MAP, and ROW). They are now translated to typed vectors, lists, or tibbles depending on the types and structure of the data. (<a href="https://github.com/prestodb/RPresto/issues/118">#118</a>)</li>
 </ul></li>
 <li>Add vignettes on Presto-R type translations</li>
-<li>Add a package site on functions, articles, and changelogs</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.8" id="rpresto-138">RPresto 1.3.8<a class="anchor" aria-label="anchor" href="#rpresto-138"></a></h2>
-<ul><li>Fix failing unit tests (<a href="https://github.com/prestodb/RPresto/issues/141" class="external-link">#141</a>)</li>
-<li>Support Trino headers in session (<a href="https://github.com/prestodb/RPresto/issues/143" class="external-link">#143</a>)</li>
+<ul><li>Fix failing unit tests (<a href="https://github.com/prestodb/RPresto/issues/141">#141</a>)</li>
+<li>Support Trino headers in session (<a href="https://github.com/prestodb/RPresto/issues/143">#143</a>)</li>
 <li>Update copyright headers</li>
-<li>Migrate RPresto’s dplyr interface to use dbplyr 2.0.0 backend (<a href="https://github.com/prestodb/RPresto/issues/150" class="external-link">#150</a>)</li>
+<li>Migrate RPresto’s dplyr interface to use dbplyr 2.0.0 backend (<a href="https://github.com/prestodb/RPresto/issues/150">#150</a>)</li>
 <li>Add documentation on RPresto’s DBI and <code>dplyr</code> backend implementation</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.7" id="rpresto-137">RPresto 1.3.7<a class="anchor" aria-label="anchor" href="#rpresto-137"></a></h2><p class="text-muted">CRAN release: 2021-09-04</p>
-<ul><li>Fix testing errors caused by Presto changes since last update (<a href="https://github.com/prestodb/RPresto/issues/131" class="external-link">#131</a>)</li>
-<li>Change <code>[[</code> translation from <code>[]</code> subscript operator to <code>ELEMENT_AT()</code> (<a href="https://github.com/prestodb/RPresto/issues/132" class="external-link">#132</a>)</li>
-<li>Enable simple ROW type support (<a href="https://github.com/prestodb/RPresto/issues/137" class="external-link">#137</a>)</li>
-<li>Fix a bug whereby <code><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.infinite()</a></code> is incorrectly translated to <code>IS_FINITE()</code> instead of <code>IS_INFINITE()</code> in SQL (<a href="https://github.com/prestodb/RPresto/issues/139" class="external-link">#139</a>)</li>
-<li>Disabled translation of <code><a href="https://rdrr.io/r/stats/median.html" class="external-link">median()</a></code> and <code><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile()</a></code> and suggested <code>approx_quantile()</code> instead. (<a href="https://github.com/prestodb/RPresto/issues/120" class="external-link">#120</a>)</li>
+<ul><li>Fix testing errors caused by Presto changes since last update (<a href="https://github.com/prestodb/RPresto/issues/131">#131</a>)</li>
+<li>Change <code>[[</code> translation from <code>[]</code> subscript operator to <code>ELEMENT_AT()</code> (<a href="https://github.com/prestodb/RPresto/issues/132">#132</a>)</li>
+<li>Enable simple ROW type support (<a href="https://github.com/prestodb/RPresto/issues/137">#137</a>)</li>
+<li>Fix a bug whereby <code><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.infinite()</a></code> is incorrectly translated to <code>IS_FINITE()</code> instead of <code>IS_INFINITE()</code> in SQL (<a href="https://github.com/prestodb/RPresto/issues/139">#139</a>)</li>
+<li>Disabled translation of <code><a href="https://rdrr.io/r/stats/median.html" class="external-link">median()</a></code> and <code><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile()</a></code> and suggested <code>approx_quantile()</code> instead. (<a href="https://github.com/prestodb/RPresto/issues/120">#120</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.6" id="rpresto-136">RPresto 1.3.6<a class="anchor" aria-label="anchor" href="#rpresto-136"></a></h2><p class="text-muted">CRAN release: 2021-05-31</p>
@@ -84,20 +83,20 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.5" id="rpresto-135">RPresto 1.3.5<a class="anchor" aria-label="anchor" href="#rpresto-135"></a></h2><p class="text-muted">CRAN release: 2020-11-13</p>
-<ul><li>Add custom Date and POSIXct sql translation implementations for dbplyr (<a href="https://github.com/prestodb/RPresto/issues/123" class="external-link">#123</a>, thanks to <a href="https://github.com/OssiLehtinen" class="external-link">@OssiLehtinen</a> for original implementations).</li>
+<ul><li>Add custom Date and POSIXct sql translation implementations for dbplyr (<a href="https://github.com/prestodb/RPresto/issues/123">#123</a>, thanks to <a href="https://github.com/OssiLehtinen" class="external-link">@OssiLehtinen</a> for original implementations).</li>
 <li>Adapt <code>dbClearResult</code> to the API change, we now need to <code>DELETE</code> <code>/v1/query/&lt;query_id&gt;</code>.</li>
 <li>Add a <code>query.id</code> slot to <code>PrestoResult</code>.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.4" id="rpresto-134">RPresto 1.3.4<a class="anchor" aria-label="anchor" href="#rpresto-134"></a></h2><p class="text-muted">CRAN release: 2019-10-18</p>
-<ul><li>Translate <code>[[</code> to allow indexing arrays and maps with dplyr (<a href="https://github.com/prestodb/RPresto/issues/110" class="external-link">#110</a>).</li>
-<li>Switch from BSD+Patents license to Standard BSD license (<a href="https://github.com/prestodb/RPresto/issues/114" class="external-link">#114</a>).</li>
+<ul><li>Translate <code>[[</code> to allow indexing arrays and maps with dplyr (<a href="https://github.com/prestodb/RPresto/issues/110">#110</a>).</li>
+<li>Switch from BSD+Patents license to Standard BSD license (<a href="https://github.com/prestodb/RPresto/issues/114">#114</a>).</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.3" id="rpresto-133">RPresto 1.3.3<a class="anchor" aria-label="anchor" href="#rpresto-133"></a></h2><p class="text-muted">CRAN release: 2019-05-03</p>
 <ul><li>Fix tests for compatibility with <code>dbplyr</code> 1.4.0.</li>
-<li>Send headers with all http requests (<a href="https://github.com/prestodb/RPresto/issues/103" class="external-link">#103</a>).</li>
-<li>Add support for <code>as.&lt;data_type&gt;</code> style casting for dplyr (<a href="https://github.com/prestodb/RPresto/issues/97" class="external-link">#97</a>).</li>
+<li>Send headers with all http requests (<a href="https://github.com/prestodb/RPresto/issues/103">#103</a>).</li>
+<li>Add support for <code>as.&lt;data_type&gt;</code> style casting for dplyr (<a href="https://github.com/prestodb/RPresto/issues/97">#97</a>).</li>
 <li>Add Code of Conduct.</li>
 </ul></div>
     <div class="section level2">
@@ -107,30 +106,30 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.1" id="rpresto-131">RPresto 1.3.1<a class="anchor" aria-label="anchor" href="#rpresto-131"></a></h2><p class="text-muted">CRAN release: 2018-09-10</p>
-<ul><li>Presto now might return data in POST response (<a href="https://github.com/prestodb/RPresto/issues/89" class="external-link">#89</a>)</li>
-<li>Presto now might not always return column information in each response (<a href="https://github.com/prestodb/RPresto/issues/93" class="external-link">#93</a>)</li>
-<li>Better error message for unknown column types (<a href="https://github.com/prestodb/RPresto/issues/86" class="external-link">#86</a>, <a href="https://github.com/prestodb/RPresto/issues/87" class="external-link">#87</a>)</li>
-<li>Adapt to presto changes for type casting translation (<a href="https://github.com/prestodb/RPresto/issues/88" class="external-link">#88</a>)</li>
-<li>Add CHAR data type (<a href="https://github.com/prestodb/RPresto/issues/91" class="external-link">#91</a>)</li>
+<ul><li>Presto now might return data in POST response (<a href="https://github.com/prestodb/RPresto/issues/89">#89</a>)</li>
+<li>Presto now might not always return column information in each response (<a href="https://github.com/prestodb/RPresto/issues/93">#93</a>)</li>
+<li>Better error message for unknown column types (<a href="https://github.com/prestodb/RPresto/issues/86">#86</a>, <a href="https://github.com/prestodb/RPresto/issues/87">#87</a>)</li>
+<li>Adapt to presto changes for type casting translation (<a href="https://github.com/prestodb/RPresto/issues/88">#88</a>)</li>
+<li>Add CHAR data type (<a href="https://github.com/prestodb/RPresto/issues/91">#91</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.0" id="rpresto-130">RPresto 1.3.0<a class="anchor" aria-label="anchor" href="#rpresto-130"></a></h2><p class="text-muted">CRAN release: 2017-07-13</p>
-<ul><li>Fix Rcpp compilation under Windows (<a href="https://github.com/prestodb/RPresto/issues/79" class="external-link">#79</a>)</li>
+<ul><li>Fix Rcpp compilation under Windows (<a href="https://github.com/prestodb/RPresto/issues/79">#79</a>)</li>
 <li>
-<code>SET/RESET SESSION</code> queries are now correctly respected when used under <code>dbGetQuery</code>. <code>PrestoConnection</code> no longer has <code>parameters</code> slot but <code>dbConnect</code> remains backward compatible. Manual change to parameter is still possible via <code>conn@session$setParameter()</code> (<a href="https://github.com/prestodb/RPresto/issues/77" class="external-link">#77</a>)</li>
-<li>Adapt to changes in dplyr version 0.7.0, mainly around the remote backend support being split to <code>dbplyr</code>. This should be backwards compatible back to dplyr 0.4.3 (<a href="https://github.com/prestodb/RPresto/issues/76" class="external-link">#76</a>)</li>
-<li>Add support for the REAL data type (<a href="https://github.com/prestodb/RPresto/issues/70" class="external-link">#70</a>)</li>
-<li>Allow specifying the connection source (<a href="https://github.com/prestodb/RPresto/issues/68" class="external-link">#68</a>)</li>
-<li>Drop RCurl dependency (<a href="https://github.com/prestodb/RPresto/issues/67" class="external-link">#67</a>)</li>
-<li>Return DECIMAL data types as characters as opposed to numeric’s previously (<a href="https://github.com/prestodb/RPresto/issues/64" class="external-link">#64</a>, fixes <a href="https://github.com/prestodb/RPresto/issues/60" class="external-link">#60</a>)</li>
-<li>Add support for new integer data types (INTEGER, SMALLINT, TINYINT) (<a href="https://github.com/prestodb/RPresto/issues/59" class="external-link">#59</a>, fixes <a href="https://github.com/prestodb/RPresto/issues/56" class="external-link">#56</a>)</li>
-<li>Migrate the <code>json</code> to <code>data.frame</code> construction from pure R to Rcpp for 10x speed gains! (thanks <a href="https://github.com/saurfang" class="external-link">@saurfang</a>) (<a href="https://github.com/prestodb/RPresto/issues/57" class="external-link">#57</a>, <a href="https://github.com/prestodb/RPresto/issues/58" class="external-link">#58</a>)</li>
-<li>Fix dbListFields to use the nextUri instead of infoUri (<a href="https://github.com/prestodb/RPresto/issues/55" class="external-link">#55</a>)</li>
-<li>Don’t drop data for duplicate column names (<a href="https://github.com/prestodb/RPresto/issues/53" class="external-link">#53</a>)</li>
+<code>SET/RESET SESSION</code> queries are now correctly respected when used under <code>dbGetQuery</code>. <code>PrestoConnection</code> no longer has <code>parameters</code> slot but <code>dbConnect</code> remains backward compatible. Manual change to parameter is still possible via <code>conn@session$setParameter()</code> (<a href="https://github.com/prestodb/RPresto/issues/77">#77</a>)</li>
+<li>Adapt to changes in dplyr version 0.7.0, mainly around the remote backend support being split to <code>dbplyr</code>. This should be backwards compatible back to dplyr 0.4.3 (<a href="https://github.com/prestodb/RPresto/issues/76">#76</a>)</li>
+<li>Add support for the REAL data type (<a href="https://github.com/prestodb/RPresto/issues/70">#70</a>)</li>
+<li>Allow specifying the connection source (<a href="https://github.com/prestodb/RPresto/issues/68">#68</a>)</li>
+<li>Drop RCurl dependency (<a href="https://github.com/prestodb/RPresto/issues/67">#67</a>)</li>
+<li>Return DECIMAL data types as characters as opposed to numeric’s previously (<a href="https://github.com/prestodb/RPresto/issues/64">#64</a>, fixes <a href="https://github.com/prestodb/RPresto/issues/60">#60</a>)</li>
+<li>Add support for new integer data types (INTEGER, SMALLINT, TINYINT) (<a href="https://github.com/prestodb/RPresto/issues/59">#59</a>, fixes <a href="https://github.com/prestodb/RPresto/issues/56">#56</a>)</li>
+<li>Migrate the <code>json</code> to <code>data.frame</code> construction from pure R to Rcpp for 10x speed gains! (thanks <a href="https://github.com/saurfang" class="external-link">@saurfang</a>) (<a href="https://github.com/prestodb/RPresto/issues/57">#57</a>, <a href="https://github.com/prestodb/RPresto/issues/58">#58</a>)</li>
+<li>Fix dbListFields to use the nextUri instead of infoUri (<a href="https://github.com/prestodb/RPresto/issues/55">#55</a>)</li>
+<li>Don’t drop data for duplicate column names (<a href="https://github.com/prestodb/RPresto/issues/53">#53</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.1" id="rpresto-121">RPresto 1.2.1<a class="anchor" aria-label="anchor" href="#rpresto-121"></a></h2><p class="text-muted">CRAN release: 2016-04-06</p>
-<ul><li>Handle responses with no column information (fixes <a href="https://github.com/prestodb/RPresto/issues/49" class="external-link">#49</a>)</li>
+<ul><li>Handle responses with no column information (fixes <a href="https://github.com/prestodb/RPresto/issues/49">#49</a>)</li>
 <li>Add retries for GET and POST responses with error status codes</li>
 <li>Skip test cases for ones that need locale modification if we cannot set the locale for the OS.</li>
 <li>Adapt to changes in the upcoming dplyr and testthat versions.</li>

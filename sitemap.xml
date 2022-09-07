@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/404.html</loc>
+    <loc>https://github.com/prestodb/RPresto/404.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/CODE_OF_CONDUCT.html</loc>
+    <loc>https://github.com/prestodb/RPresto/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/CONTRIBUTING.html</loc>
+    <loc>https://github.com/prestodb/RPresto/CONTRIBUTING.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/LICENSE-text.html</loc>
+    <loc>https://github.com/prestodb/RPresto/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/articles/complex-types.html</loc>
+    <loc>https://github.com/prestodb/RPresto/articles/complex-types.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/articles/index.html</loc>
+    <loc>https://github.com/prestodb/RPresto/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/articles/primitive-types.html</loc>
+    <loc>https://github.com/prestodb/RPresto/articles/primitive-types.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/authors.html</loc>
+    <loc>https://github.com/prestodb/RPresto/authors.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/backend-implementations.html</loc>
+    <loc>https://github.com/prestodb/RPresto/backend-implementations.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/index.html</loc>
+    <loc>https://github.com/prestodb/RPresto/index.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/news/index.html</loc>
+    <loc>https://github.com/prestodb/RPresto/news/index.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/Presto.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/Presto.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/PrestoConnection-class.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/PrestoConnection-class.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/PrestoDriver-class.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/PrestoDriver-class.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/PrestoQuery-class.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/PrestoQuery-class.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/PrestoResult-class.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/PrestoResult-class.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/PrestoSession-class.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/PrestoSession-class.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/RPresto.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/RPresto.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/dbCreateTableAs.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/dbCreateTableAs.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/dbDataType.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/dbDataType.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/dbGetInfo.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/dbGetInfo.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/dbplyr_edition.PrestoConnection.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/dbplyr_edition.PrestoConnection.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/dbplyr_function_implementations.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/dbplyr_function_implementations.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/dplyr_function_implementations.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/dplyr_function_implementations.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/dplyr_source_function_implementations.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/dplyr_source_function_implementations.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/dummy_tables.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/dummy_tables.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/index.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/sqlCreateTableAs.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/sqlCreateTableAs.html</loc>
   </url>
   <url>
-    <loc>https://jarodmeng.github.io/RPresto/reference/src_presto.html</loc>
+    <loc>https://github.com/prestodb/RPresto/reference/src_presto.html</loc>
   </url>
 </urlset>
