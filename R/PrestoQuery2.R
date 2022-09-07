@@ -78,6 +78,20 @@ PrestoQuery2 <- setRefClass('PrestoQuery2',
             }
           }
         }
+        if (content$updateType == 'START TRANSACTION') {
+          properties <-
+            httr::headers(response)[['x-presto-started-transaction-id']]
+          if (!is.null(properties)) {
+            .conn@session$setTransactionId(properties)
+          }
+        }
+        if (content$updateType %in% c('ROLLBACK', 'COMMIT')) {
+          properties <-
+            httr::headers(response)[['x-presto-clear-transaction-id']]
+          if (properties == 'true') {
+            .conn@session$setTransactionId('NONE')
+          }
+        }
       }
     },
     extract_data = function(content) {

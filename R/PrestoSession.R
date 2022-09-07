@@ -23,13 +23,15 @@ PrestoSession <- setRefClass("PrestoSession",
   fields = c(
     ".parameters",
     ".ctes",
-    ".prepared.statements"
+    ".prepared.statements",
+    ".transaction.id"
   ),
   methods = list(
     initialize = function(parameters, ctes = list(), ...) {
       initFields(
         .parameters = parameters, .ctes = list(),
-        .prepared.statements = list()
+        .prepared.statements = list(),
+        .transaction.id = "NONE"
       )
       if (length(ctes) > 0) {
         if ("" %in% names(ctes)) {
@@ -137,6 +139,12 @@ PrestoSession <- setRefClass("PrestoSession",
         sep='=',
         collapse=','
       ))
+    },
+    setTransactionId=function(value) {
+      .transaction.id <<- value
+    },
+    transactionId=function() {
+      return(.transaction.id)
     }
   )
 )

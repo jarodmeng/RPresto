@@ -15,7 +15,8 @@
       "User-Agent"= methods::getPackageName(),
       "X-Trino-Session"=conn@session$parameterString(),
       "X-Trino-Prepared-Statement"=conn@session$preparedStatementsString(),
-      "X-Trino-Extra-Credential"=conn@extra.credentials
+      "X-Trino-Extra-Credential"=conn@extra.credentials,
+      "X-Trino-Transaction-Id"=conn@session$transactionId()
     )
   } else {
     headers <- httr::add_headers(
@@ -27,7 +28,8 @@
       "User-Agent"= methods::getPackageName(),
       "X-Presto-Session"=conn@session$parameterString(),
       "X-Presto-Prepared-Statement"=conn@session$preparedStatementsString(),
-      "X-Presto-Extra-Credential"=conn@extra.credentials
+      "X-Presto-Extra-Credential"=conn@extra.credentials,
+      "X-Presto-Transaction-Id"=conn@session$transactionId()
     )
   }
   request_combine <- utils::getFromNamespace("request_combine", "httr")
