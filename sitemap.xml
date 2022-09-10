@@ -64,6 +64,12 @@
     <loc>https://github.com/prestodb/RPresto/reference/dbGetInfo.html</loc>
   </url>
   <url>
+    <loc>https://github.com/prestodb/RPresto/reference/dbplyr-db.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/prestodb/RPresto/reference/dbplyr-sql.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/prestodb/RPresto/reference/dbplyr_edition.PrestoConnection.html</loc>
   </url>
   <url>

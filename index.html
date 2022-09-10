@@ -122,32 +122,32 @@
 <span><span class="co">#&gt; 1  3.14</span></span></code></pre></div>
 <p><a href="https://dbi.r-dbi.org/reference/dbwritetable" class="external-link"><code>dbWriteTable()</code></a> can be used to write a small data frame into a Presto table.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Writing mtcars data frame into Presto</span></span>
-<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span>, <span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Writing iris data frame into Presto</span></span>
+<span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span>, <span class="va">iris</span><span class="op">)</span></span></code></pre></div>
 <p><a href="https://dbi.r-dbi.org/reference/dbexiststable" class="external-link"><code>dbExistsTable()</code></a> checks if a table exists.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p><a href="https://dbi.r-dbi.org/reference/dbreadtable" class="external-link"><code>dbReadTable()</code></a> reads the entire table into R. It’s essentially a <code>SELECT *</code> query on the table.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html" class="external-link">dbReadTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 32 × 11</span></span>
-<span><span class="co">#&gt;      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span></span>
-<span><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4</span></span>
-<span><span class="co">#&gt;  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4</span></span>
-<span><span class="co">#&gt;  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1</span></span>
-<span><span class="co">#&gt;  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1</span></span>
-<span><span class="co">#&gt;  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2</span></span>
-<span><span class="co">#&gt;  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1</span></span>
-<span><span class="co">#&gt;  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4</span></span>
-<span><span class="co">#&gt;  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2</span></span>
-<span><span class="co">#&gt;  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2</span></span>
-<span><span class="co">#&gt; 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4</span></span>
-<span><span class="co">#&gt; # … with 22 more rows</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html" class="external-link">dbReadTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 150 × 5</span></span>
+<span><span class="co">#&gt;    sepal.length sepal.width petal.length petal.width species</span></span>
+<span><span class="co">#&gt;           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1          5.1         3.5          1.4         0.2 setosa </span></span>
+<span><span class="co">#&gt;  2          4.9         3            1.4         0.2 setosa </span></span>
+<span><span class="co">#&gt;  3          4.7         3.2          1.3         0.2 setosa </span></span>
+<span><span class="co">#&gt;  4          4.6         3.1          1.5         0.2 setosa </span></span>
+<span><span class="co">#&gt;  5          5           3.6          1.4         0.2 setosa </span></span>
+<span><span class="co">#&gt;  6          5.4         3.9          1.7         0.4 setosa </span></span>
+<span><span class="co">#&gt;  7          4.6         3.4          1.4         0.3 setosa </span></span>
+<span><span class="co">#&gt;  8          5           3.4          1.5         0.2 setosa </span></span>
+<span><span class="co">#&gt;  9          4.4         2.9          1.4         0.2 setosa </span></span>
+<span><span class="co">#&gt; 10          4.9         3.1          1.5         0.1 setosa </span></span>
+<span><span class="co">#&gt; # … with 140 more rows</span></span></code></pre></div>
 <p><a href="https://dbi.r-dbi.org/reference/dbremovetable" class="external-link"><code>dbRemoveTable()</code></a> drops the table from Presto.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbRemoveTable.html" class="external-link">dbRemoveTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbRemoveTable.html" class="external-link">dbRemoveTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span><span class="op">)</span></span></code></pre></div>
 <p>You can execute a statement and returns the number of rows affected using <a href="https://dbi.r-dbi.org/reference/dbexecute" class="external-link"><code>dbExecute()</code></a>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create an empty table using CREATE TABLE</span></span>
@@ -180,18 +180,26 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load packages</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/" class="external-link">dbplyr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Add iris to Presto</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/" class="external-link">dbplyr</a></span><span class="op">)</span></span></code></pre></div>
+<p>We can use <a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link"><code>dplyr::copy_to()</code></a> to write a local data frame to a <code>PrestoConnection</code> and immediately create a remote table on it.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Add mtcars to Presto</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbRemoveTable.html" class="external-link">dbRemoveTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">tbl.mtcars</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">copy_to</a></span><span class="op">(</span>dest <span class="op">=</span> <span class="va">con</span>, df <span class="op">=</span> <span class="va">mtcars</span>, name <span class="op">=</span> <span class="st">"mtcars"</span><span class="op">)</span></span>
+<span><span class="co"># colnames() gives the column names</span></span>
+<span><span class="va">tbl.mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"</span></span>
+<span><span class="co">#&gt; [11] "carb"</span></span></code></pre></div>
+<p><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link"><code>dplyr::tbl()</code></a> also work directly on the <code>PrestoConnection</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Treat "iris" in Presto as a remote data source that dplyr can now manipulate</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span>, <span class="va">iris</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link"><code>dplyr::tbl()</code></a> can work directly on <code>PrestoConnection</code> object.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Treat "iris" in Presto as a remote data source that dplyr can now manipulate</span></span>
+<span><span class="op">}</span></span>
 <span><span class="va">tbl.iris</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"iris"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># colnames() gives the column names</span></span>
 <span><span class="va">tbl.iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "sepal.length" "sepal.width"  "petal.length" "petal.width"  "species"</span></span>
 <span></span>
@@ -215,7 +223,7 @@
 <h2 id="connecting-to-trino">Connecting to Trino<a class="anchor" aria-label="anchor" href="#connecting-to-trino"></a>
 </h2>
 <p>To connect to Trino you must set the <code>use.trino.headers</code> parameter so <code>RPresto</code> knows to send the correct headers to the server. Otherwise all the same functionality is supported.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">con.trino</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span></span>
 <span>  <span class="fu">RPresto</span><span class="fu">::</span><span class="fu"><a href="reference/Presto.html">Presto</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  use.trino.headers<span class="op">=</span><span class="cn">TRUE</span>,</span>
@@ -232,7 +240,7 @@
 </h2>
 <p>To pass extraCredentials that gets added to the <code>X-Presto-Extra-Credential</code> header use the <code>extra.credentials</code> parameter so <code>RPresto</code> will add that to the header while creating the <code>PrestoConnection</code>.</p>
 <p>Set <code>use.trino.headers</code> if you want to pass extraCredentials through the <code>X-Trino-Extra-Credential</code> header.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span></span>
 <span>  <span class="fu">RPresto</span><span class="fu">::</span><span class="fu"><a href="reference/Presto.html">Presto</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  host<span class="op">=</span><span class="st">"http://localhost"</span>,</span>

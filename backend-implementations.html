@@ -57,52 +57,359 @@
 <div class="section level2">
 <h2 id="dbi-backend">
 <code>DBI</code> backend<a class="anchor" aria-label="anchor" href="#dbi-backend"></a></h2>
-<p>RPresto implements the latest DBI interface between R and Presto.</p>
-<p>The required DBI classes are defined in the following files. Their specific DBI <code>dbX</code> generics implementations are listed under each class.</p>
-<ul><li>Initialization function: <code>Presto.R</code>
-</li>
-<li>
-<code>PrestoDriver</code>: <code>PrestoDriver.R</code>
-<ul><li>The <code><a href="https://dbi.r-dbi.org/reference/dbDriver.html" class="external-link">dbUnloadDriver()</a></code> method is implemented in <code>dbUnloadDriver.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbDataType.html" class="external-link">dbDataType()</a></code> method is implemented in <code>dbDataType.R</code>.</li>
-</ul></li>
-<li>
-<code>PrestoConnection</code>: <code>PrestoConnection.R</code>
-<ul><li>The <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect()</a></code> method is implemented in <code>dbConnect.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html" class="external-link">dbDisconnect()</a></code> method is implemented in <code>dbDisconnect.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable()</a></code> method is implemented in <code>dbExistsTable.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery()</a></code> method is implemented in <code>dbGetQuery.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbListTables.html" class="external-link">dbListTables()</a></code> method is implemented in <code>dbListTables.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbCreateTable.html" class="external-link">dbCreateTable()</a></code> method is implemented in <code>sqlCreateTable.R</code> and <code>dbCreateTable.R</code>.</li>
-<li>The <code><a href="reference/dbCreateTableAs.html">dbCreateTableAs()</a></code> method is implemented in <code>sqlCreateTableAs.R</code> and <code>dbCreateTableAs.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable()</a></code> method is implemented in <code>dbWriteTable.R</code>.</li>
-</ul></li>
-<li>
-<code>PrestoResult</code>: <code>PrestoResult.R</code>
-<ul><li>The <code><a href="https://dbi.r-dbi.org/reference/dbSendQuery.html" class="external-link">dbSendQuery()</a></code> method is implemented in <code>dbSendQuery.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbClearResult.html" class="external-link">dbClearResult()</a></code> method is implemented in <code>dbClearResult.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbFetch.html" class="external-link">dbFetch()</a></code> method is implemented in <code>dbFetch.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbHasCompleted.html" class="external-link">dbHasCompleted()</a></code> method is implemented in <code>dbHasCompleted.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbIsValid.html" class="external-link">dbIsValid()</a></code> method is implemented in <code>dbIsValud.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbGetStatement.html" class="external-link">dbGetStatement()</a></code> method is implemented in <code>dbGetStatement.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbGetRowCount.html" class="external-link">dbGetRowCount()</a></code> method is implemented in <code>dbGetRowCount.R</code>.</li>
-</ul></li>
-<li>Methods available for multiple classes
-<ul><li>The <code><a href="https://rdrr.io/r/methods/show.html" class="external-link">show()</a></code> method is defined for all classes in their class definition files.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbGetInfo.html" class="external-link">dbGetInfo()</a></code> method is defined for all classes in <code>dbGetInfo.R</code>.</li>
-<li>The <code><a href="https://dbi.r-dbi.org/reference/dbListFields.html" class="external-link">dbListFields()</a></code> method is defined for <code>PrestoConnection</code> and <code>PrestoResult</code> classes in <code>dbListFields.R</code>.</li>
-</ul></li>
-</ul><p>Besides, we also define two more classes for their side effects. They are defined using reference class (i.e. R5).</p>
-<ul><li>Query: <code>PrestoQuery.R</code>. It’s used in the <code>PrestoResult</code> class.</li>
-<li>Session: <code>PrestoSession.R</code>. It’s used in the <code>PrestoConnection</code> class.</li>
-</ul></div>
+<p>Important classes:</p>
+<table class="table"><thead><tr class="header"><th>Class</th>
+<th>Implementation type</th>
+<th>File</th>
+</tr></thead><tbody><tr class="odd"><td>PrestoDriver</td>
+<td>S4</td>
+<td>PrestoDriver.R</td>
+</tr><tr class="even"><td>PrestoConnection</td>
+<td>S4</td>
+<td>PrestoConnection.R</td>
+</tr><tr class="odd"><td>PrestoResult</td>
+<td>S4</td>
+<td>PrestoResult.R</td>
+</tr><tr class="even"><td>PrestoQuery</td>
+<td>RefClass</td>
+<td>PrestoQuery.R</td>
+</tr><tr class="odd"><td>PrestoSession</td>
+<td>RefClass</td>
+<td>PrestoSession.R</td>
+</tr></tbody></table><p>Important methods:</p>
+<table class="table"><thead><tr class="header"><th>Method</th>
+<th>Class</th>
+<th>Status</th>
+<th>File</th>
+</tr></thead><tbody><tr class="odd"><td>dbGetInfo</td>
+<td>PrestoDriver</td>
+<td>Implemented</td>
+<td>dbGetInfo.R</td>
+</tr><tr class="even"><td>dbDataType</td>
+<td>PrestoDriver</td>
+<td>Implemented</td>
+<td>dbDataType.R</td>
+</tr><tr class="odd"><td>dbUnloadDriver</td>
+<td>PrestoDriver</td>
+<td>Implemented</td>
+<td>dbUnloadDriver.R</td>
+</tr><tr class="even"><td>dbConnect</td>
+<td>PrestoDriver</td>
+<td>Implemented</td>
+<td>dbConnect.R</td>
+</tr><tr class="odd"><td>dbGetInfo</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbGetInfo.R</td>
+</tr><tr class="even"><td>dbDisconnect</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbDisconnect.R</td>
+</tr><tr class="odd"><td>dbQuoteIdentifier</td>
+<td>PrestoConnection</td>
+<td>Default</td>
+<td></td>
+</tr><tr class="even"><td>dbUnquoteIdentifier</td>
+<td>PrestoConnection</td>
+<td>Default</td>
+<td></td>
+</tr><tr class="odd"><td>dbQuoteString</td>
+<td>PrestoConnection</td>
+<td>Default</td>
+<td></td>
+</tr><tr class="even"><td>dbQuoteLiteral</td>
+<td>PrestoConnection</td>
+<td>Default</td>
+<td></td>
+</tr><tr class="odd"><td>dbListTables</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbListTables.R</td>
+</tr><tr class="even"><td>dbExistsTable</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbExistsTable.R</td>
+</tr><tr class="odd"><td>dbSendQuery</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbSendQuery.R</td>
+</tr><tr class="even"><td>dbSendStatement</td>
+<td>PrestoConnection</td>
+<td>Default</td>
+<td></td>
+</tr><tr class="odd"><td>dbGetQuery</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbGetQuery.R</td>
+</tr><tr class="even"><td>dbExecute</td>
+<td>PrestoConnection</td>
+<td>Default</td>
+<td></td>
+</tr><tr class="odd"><td>dbCreateTable</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbCreateTable.R</td>
+</tr><tr class="even"><td>sqlCreateTable</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>sqlCreateTable.R</td>
+</tr><tr class="odd"><td>dbCreateTableAs</td>
+<td>PrestoConnection</td>
+<td>Created</td>
+<td>dbCreateTableAs.R</td>
+</tr><tr class="even"><td>sqlCreateTableAs</td>
+<td>PrestoConnection</td>
+<td>Created</td>
+<td>sqlCreateTableAs.R</td>
+</tr><tr class="odd"><td>dbWriteTable</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbWriteTable.R</td>
+</tr><tr class="even"><td>dbRemoveTable</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbRemoveTable.R</td>
+</tr><tr class="odd"><td>dbReadTable</td>
+<td>PrestoConnection</td>
+<td>Default</td>
+<td></td>
+</tr><tr class="even"><td>dbAppendtable</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="odd"><td>dbListFields</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbListFields.R</td>
+</tr><tr class="even"><td>dbBegin</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="odd"><td>dbCommit</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="even"><td>dbRollback</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="odd"><td>dbBreak</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="even"><td>dbWithTransaction</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="odd"><td>dbGetInfo</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>dbGetInfo.R</td>
+</tr><tr class="even"><td>dbClearResult</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>dbClearResult.R</td>
+</tr><tr class="odd"><td>dbFetch</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>dbFetch.R</td>
+</tr><tr class="even"><td>fetch</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>fetch.R</td>
+</tr><tr class="odd"><td>dbHasCompleted</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>dbHasCompleted.R</td>
+</tr><tr class="even"><td>dbIsValid</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>dbIsValid.R</td>
+</tr><tr class="odd"><td>dbGetStatement</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>dbGetStatement.R</td>
+</tr><tr class="even"><td>dbGetRowCount</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>dbGetRowCount.R</td>
+</tr><tr class="odd"><td>dbGetRowsAffected</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>dbGetRowsAffected.R</td>
+</tr><tr class="even"><td>dbListFields</td>
+<td>PrestoResult</td>
+<td>Implemented</td>
+<td>dbListFields.R</td>
+</tr><tr class="odd"><td>dbBind</td>
+<td>PrestoResult</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="even"><td>dbColumnInfo</td>
+<td>PrestoResult</td>
+<td>Not implemented</td>
+<td></td>
+</tr></tbody></table></div>
 <div class="section level2">
 <h2 id="dplyr-remote-database-backend">
 <code>dplyr</code> remote database backend<a class="anchor" aria-label="anchor" href="#dplyr-remote-database-backend"></a></h2>
-<p>RPresto implements a number of <code>dplyr</code>’s <code>db_</code> generics that execute actions on the underlying database. * The <code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_desc()</a></code> method is implemented in <code>db_desc.PrestoConnection.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_data_type()</a></code> method is implemented in <code>db.data.type.PrestoConnection.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_explain()</a></code> method is implemented in <code>db.explain.PrestoConnection.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_query_rows()</a></code> method is explicitly not implemented in <code>db.query.rows.PrestoConnection.R</code>.</p>
-<p><code>dplyr</code> has a concept called “remote database source” that’s basically a wrapper around a DBI database connection object (i.e. <code>PrestoConnection</code>). * The <code>src_presto</code> object is defined in <code>src.presto.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">dplyr::copy_to()</a></code> method is explicitly not implemented in <code>copy.to.src.presto.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">dplyr::tbl()</a></code> method is implemented in <code>tbl.src.presto.R</code>. * The <code><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">dplyr::collect()</a></code> method is implemented in <code>src.presto.R</code>.</p>
-<p>The <code>dplyr</code> database backend also relies on implementation of a few <code>dbplyr</code> methods. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-misc.html" class="external-link">dbplyr::dbplyr_edition()</a></code> method is implemented in <code>dbplyr.edition.PrestoConnection.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-io.html" class="external-link">dbplyr::db_collect()</a></code> method is implemented in <code>db_collect.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-quote.html" class="external-link">dbplyr::sql_escape_date()</a></code> method is implemented in <code>sql_escape_date.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-quote.html" class="external-link">dbplyr::sql_escape_datetime()</a></code> method is implemented in <code>sql_escape_datetime.R</code>. * The <code><a href="https://dbplyr.tidyverse.org/reference/db-sql.html" class="external-link">dbplyr::sql_translation()</a></code> method is implemented in <code>sql_translation.R</code>.</p>
-</div>
+<p><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link"><code>dplyr</code> generics</a>:</p>
+<table class="table"><thead><tr class="header"><th>Method</th>
+<th>Primary class</th>
+<th>Status</th>
+<th>File</th>
+</tr></thead><tbody><tr class="odd"><td>db_desc</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="even"><td>db_data_type</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="odd"><td>db_explain</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="even"><td>db_query_rows</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="odd"><td>db_query_fields</td>
+<td>PrestoConnection</td>
+<td>Default</td>
+<td></td>
+</tr><tr class="even"><td>db_save_query</td>
+<td>PrestoConnection</td>
+<td>Default</td>
+<td></td>
+</tr><tr class="odd"><td>db_list_tables</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="even"><td>db_has_table</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="odd"><td>db_write_table</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="even"><td>db_create_table</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="odd"><td>db_insert_into</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="even"><td>db_drop_table</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="odd"><td>db_begin</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="even"><td>db_rollback</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="odd"><td>db_commit</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr><tr class="even"><td>db_analyze</td>
+<td>PrestoConnection</td>
+<td>Not implemented</td>
+<td></td>
+</tr></tbody></table><p><code>dplyr</code> remote database source functions:</p>
+<table style="width:100%;" class="table"><colgroup><col width="19%"><col width="26%"><col width="30%"><col width="14%"><col width="9%"></colgroup><thead><tr class="header"><th>Function</th>
+<th>Default</th>
+<th>Primary class</th>
+<th>Status</th>
+<th>File</th>
+</tr></thead><tbody><tr class="odd"><td>src_presto</td>
+<td>src_dbi</td>
+<td></td>
+<td>Implemented</td>
+<td>dbplyr-src.R</td>
+</tr><tr class="even"><td>tbl</td>
+<td></td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-src.R</td>
+</tr><tr class="odd"><td>copy_to</td>
+<td></td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-src.R</td>
+</tr><tr class="even"><td>tbl.src_presto</td>
+<td>tbl.src_dbi</td>
+<td>src_presto</td>
+<td>Implemented</td>
+<td>dbplyr-src.R</td>
+</tr><tr class="odd"><td>copy_to.src_presto</td>
+<td>copy_to.src_sql</td>
+<td>src_presto</td>
+<td>Implemented</td>
+<td>dbplyr-src.R</td>
+</tr><tr class="even"><td>collect.tbl_presto</td>
+<td>collect.tbl_sql</td>
+<td>tbl_presto</td>
+<td>Implemented</td>
+<td>dbplyr-src.R</td>
+</tr><tr class="odd"><td>compute.tbl_presto</td>
+<td>compute.tbl_sql</td>
+<td>tbl_presto</td>
+<td>Implemented</td>
+<td>dbplyr-src.R</td>
+</tr><tr class="even"><td>collapse.tbl_presto</td>
+<td>collapse.tbl_sql</td>
+<td>tbl_presto</td>
+<td>Default</td>
+<td></td>
+</tr></tbody></table><p><a href="https://dbplyr.tidyverse.org/reference/db-io.html" class="external-link"><code>dbplyr</code> generics</a>:</p>
+<table class="table"><thead><tr class="header"><th>Method</th>
+<th>Primary class</th>
+<th>Status</th>
+<th>File</th>
+</tr></thead><tbody><tr class="odd"><td>dbplyr_edition</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="even"><td>db_collect</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="odd"><td>db_copy_to</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="even"><td>db_compute</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-db.R</td>
+</tr><tr class="odd"><td>sql_query_fields</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-sql.R</td>
+</tr><tr class="even"><td>sql_escape_date</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-sql.R</td>
+</tr><tr class="odd"><td>sql_escape_datetime</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-sql.R</td>
+</tr><tr class="even"><td>sql_translation</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-sql.R</td>
+</tr><tr class="odd"><td>sql_query_save</td>
+<td>PrestoConnection</td>
+<td>Implemented</td>
+<td>dbplyr-sql.R</td>
+</tr></tbody></table></div>
 </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

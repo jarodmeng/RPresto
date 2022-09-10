@@ -60,6 +60,10 @@
 <li>Add complete support for complex Presto types (i.e., ARRAY, MAP, and ROW). They are now translated to typed vectors, lists, or tibbles depending on the types and structure of the data. (<a href="https://github.com/prestodb/RPresto/issues/118">#118</a>)</li>
 </ul></li>
 <li>Add vignettes on Presto-R type translations</li>
+<li>
+<code><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable()</a></code> error when quoted identifier is supplied as <code>name</code> is fixed (<a href="https://github.com/prestodb/RPresto/issues/167">#167</a>)</li>
+<li>Add <code><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">dplyr::copy_to()</a></code> methods for <code>src_presto</code> and <code>PrestoConnection</code>
+</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.8" id="rpresto-138">RPresto 1.3.8<a class="anchor" aria-label="anchor" href="#rpresto-138"></a></h2>

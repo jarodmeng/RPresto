@@ -73,7 +73,7 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for PrestoConnection</span></span>
-<span><span class="fu"><a href="dbCreateTableAs.html">dbCreateTableAs</a></span><span class="op">(</span><span class="va">conn</span>, <span class="va">name</span>, <span class="va">statement</span>, with <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu"><a href="dbCreateTableAs.html">dbCreateTableAs</a></span><span class="op">(</span><span class="va">conn</span>, <span class="va">name</span>, <span class="va">sql</span>, with <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for PrestoConnection,character</span></span>
 <span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable</a></span><span class="op">(</span><span class="va">conn</span>, <span class="va">name</span>, <span class="va">...</span><span class="op">)</span></span>
@@ -103,7 +103,8 @@
 <span>  append <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  field.types <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  temporary <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  row.names <span class="op">=</span> <span class="cn">NA</span></span>
+<span>  row.names <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  with <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for PrestoConnection</span></span>
@@ -118,7 +119,7 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for PrestoConnection</span></span>
-<span><span class="fu"><a href="sqlCreateTableAs.html">sqlCreateTableAs</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">table</span>, <span class="va">statement</span>, with <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="sqlCreateTableAs.html">sqlCreateTableAs</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">name</span>, <span class="va">sql</span>, with <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -155,8 +156,8 @@ Field types are unescaped.</p>
 <dd><p>Other parameters passed on to methods.</p></dd>
 
 
-<dt>statement</dt>
-<dd><p>a character string containing SQL.</p></dd>
+<dt>sql</dt>
+<dd><p>a character string containing SQL statement.</p></dd>
 
 
 <dt>pattern</dt>
