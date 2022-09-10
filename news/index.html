@@ -62,8 +62,21 @@
 <li>Add vignettes on Presto-R type translations</li>
 <li>
 <code><a href="https://dbi.r-dbi.org/reference/dbExistsTable.html" class="external-link">dbExistsTable()</a></code> error when quoted identifier is supplied as <code>name</code> is fixed (<a href="https://github.com/prestodb/RPresto/issues/167">#167</a>)</li>
-<li>Add <code><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">dplyr::copy_to()</a></code> methods for <code>src_presto</code> and <code>PrestoConnection</code>
+<li>Add a few <code>dplyr</code> and <code>dbplyr</code> method implementations. See <code>backend-implementation.md</code> for the details.
+<ul><li><code><a href="https://dbplyr.tidyverse.org/reference/db-sql.html" class="external-link">dbplyr::sql_query_save()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_list_tables()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_has_table()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">dplyr::db_write_table()</a></code></li>
+<li><code><a href="https://dbplyr.tidyverse.org/reference/db-io.html" class="external-link">dbplyr::db_copy_to()</a></code></li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/copy_to.html" class="external-link">dplyr::copy_to()</a></code> method for <code>src_presto</code> and <code>PrestoConnection</code>
 </li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">dplyr::tbl()</a></code> method for <code>PrestoConnection</code>
+</li>
+<li><code><a href="https://dbplyr.tidyverse.org/reference/db-io.html" class="external-link">dbplyr::db_compute()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">dplyr::compute()</a></code></li>
+</ul></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.8" id="rpresto-138">RPresto 1.3.8<a class="anchor" aria-label="anchor" href="#rpresto-138"></a></h2>
