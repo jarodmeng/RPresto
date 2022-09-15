@@ -24,6 +24,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/common-table-expressions.html">Common Table Expressions (CTEs)</a>
     <a class="dropdown-item" href="../articles/complex-types.html">Translating complex Presto data types</a>
     <a class="dropdown-item" href="../articles/primitive-types.html">Primitive Presto data types to R types</a>
   </div>
@@ -71,6 +72,7 @@
 <span>  source <span class="op">=</span> <span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/getPackageName.html" class="external-link">getPackageName</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  session.timezone <span class="op">=</span> <span class="st">"UTC"</span>,</span>
 <span>  parameters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  ctes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  request.config <span class="op">=</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/config.html" class="external-link">config</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  use.trino.headers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  extra.credentials <span class="op">=</span> <span class="st">""</span>,</span>
@@ -126,6 +128,11 @@ zone. See the session.timezone tests for examples.</p></dd>
 <dt>parameters</dt>
 <dd><p>A <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></code> of extra parameters to be passed in
 the ‘X-Presto-Session’ header</p></dd>
+
+
+<dt>ctes</dt>
+<dd><p>A list of common table expressions (CTEs) that can be used in the
+WITH statement</p></dd>
 
 
 <dt>request.config</dt>

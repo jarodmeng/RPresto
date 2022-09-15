@@ -36,6 +36,7 @@ S3 implementation of compute for Presto."><!-- mathjax --><script src="https://c
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/common-table-expressions.html">Common Table Expressions (CTEs)</a>
     <a class="dropdown-item" href="../articles/complex-types.html">Translating complex Presto data types</a>
     <a class="dropdown-item" href="../articles/primitive-types.html">Primitive Presto data types to R types</a>
   </div>
@@ -95,13 +96,18 @@ S3 implementation of compute for Presto."><!-- mathjax --><script src="https://c
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, n <span class="op">=</span> <span class="cn">Inf</span>, warn_incomplete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for tbl_presto</span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">compute</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">name</span>, temporary <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">compute</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">name</span>, temporary <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span>, cte <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
 <dd><p>A lazy data frame backed by a database query.</p></dd>
+
+
+<dt>cte</dt>
+<dd><p>An experimental feature to save the query to a common table
+expression. Default to FALSE.</p></dd>
 
 </dl></div>
 

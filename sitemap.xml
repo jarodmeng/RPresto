@@ -10,7 +10,13 @@
     <loc>https://github.com/prestodb/RPresto/CONTRIBUTING.html</loc>
   </url>
   <url>
+    <loc>https://github.com/prestodb/RPresto/CTE_implementation.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/prestodb/RPresto/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/prestodb/RPresto/articles/common-table-expressions.html</loc>
   </url>
   <url>
     <loc>https://github.com/prestodb/RPresto/articles/complex-types.html</loc>

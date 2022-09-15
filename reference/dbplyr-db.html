@@ -24,6 +24,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/common-table-expressions.html">Common Table Expressions (CTEs)</a>
     <a class="dropdown-item" href="../articles/complex-types.html">Translating complex Presto data types</a>
     <a class="dropdown-item" href="../articles/primitive-types.html">Primitive Presto data types to R types</a>
   </div>
@@ -103,7 +104,10 @@
 <span>  analyze <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  with <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for PrestoConnection</span></span>
+<span><span class="fu"><a href="https://dbplyr.tidyverse.org/reference/db-misc.html" class="external-link">db_sql_render</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">sql</span>, <span class="va">...</span>, use_presto_cte <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -148,6 +152,11 @@ for compatibility with generics.</p></dd>
 
 <dt>sql</dt>
 <dd><p>A SQL statement.</p></dd>
+
+
+<dt>use_presto_cte</dt>
+<dd><p>A logical value indicating if to use common table
+expressions stored in PrestoConnection when possible. Default to TRUE.</p></dd>
 
 </dl></div>
 
