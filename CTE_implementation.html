@@ -64,7 +64,7 @@
 <p>There are two ways to create a CTE: 1. Directly add CTE to <code>PrestoConnection</code>. 2. Call <code>compute(..., cte = TRUE)</code> on a remote table (i.e. <code>tbl_lazy</code>) to save its query as a CTE.</p>
 <p>Both of them use the <code>addCTE()</code> method to create the CTE, so we can use <code>grep "addCTE(" * -R</code> to find where CTEs are created.</p>
 <ol style="list-style-type: decimal"><li><p><code>dbConnect.R</code> and via <code>PrestoSession.R</code>: direct addition</p></li>
-<li><p><code>dbplyr-src.R</code>: <code><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">compute()</a></code> addition</p></li>
+<li><p><code>dbplyr-src.R</code>: <code>compute()</code> addition</p></li>
 </ol></div>
 <div class="section level2">
 <h2 id="cte-usage">CTE usage<a class="anchor" aria-label="anchor" href="#cte-usage"></a></h2>
@@ -73,12 +73,12 @@
 <ol style="list-style-type: decimal"><li>
 <p>The <code>SELECT</code> query is a <code>lazy_query</code> object (i.e. a remote table’s <code>lazy_query</code> component).</p>
 <p>We parse the lazy ops to find all tables used in the query, find matching ones in the connection’s CTEs, wrap them in a <code>WITH</code> clause, and prefix the <code>WITH</code> clause to the original query.</p>
-<p>This is done in the <code><a href="https://dbplyr.tidyverse.org/reference/db-misc.html" class="external-link">db_sql_render()</a></code> implementation for <code>PrestoConnection</code> and thus show up in all downstream functions and methods that use <code><a href="https://dbplyr.tidyverse.org/reference/db-misc.html" class="external-link">db_sql_render()</a></code>.</p>
+<p>This is done in the <code>db_sql_render()</code> implementation for <code>PrestoConnection</code> and thus show up in all downstream functions and methods that use <code>db_sql_render()</code>.</p>
 </li>
 <li>
-<p>The <code>SELECT</code> query is an arbitrary query wrapped by <code><a href="https://dplyr.tidyverse.org/reference/sql.html" class="external-link">sql()</a></code>.</p>
-<p>This scenario is only captured in the <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery()</a></code> method implementation when the <code>SELECT</code> query is being executed. We capture the “table does not exist” error when it happens, parse the missing table from the error message, find the matching CTE, and use the CTE to retry the query execution.</p>
-<p>This is done in the <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery()</a></code> implementation for <code>PrestoConnection</code> and thus show up in all downstream functions and methods that use <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery()</a></code> . <strong>Notably this means that <code><a href="https://dbi.r-dbi.org/reference/dbExecute.html" class="external-link">dbExecute()</a></code> doesn’t support CTE.</strong></p>
+<p>The <code>SELECT</code> query is an arbitrary query wrapped by <code>sql()</code>.</p>
+<p>This scenario is only captured in the <code>dbGetQuery()</code> method implementation when the <code>SELECT</code> query is being executed. We capture the “table does not exist” error when it happens, parse the missing table from the error message, find the matching CTE, and use the CTE to retry the query execution.</p>
+<p>This is done in the <code>dbGetQuery()</code> implementation for <code>PrestoConnection</code> and thus show up in all downstream functions and methods that use <code>dbGetQuery()</code> . <strong>Notably this means that <code>dbExecute()</code> doesn’t support CTE.</strong></p>
 </li>
 </ol></div>
 <div class="section level2">
