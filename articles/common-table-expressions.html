@@ -140,7 +140,7 @@ available in the <code>PrestoConnection</code>. It only exists as a
 temporary feature for the connection.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">db_has_table</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"dummy_values"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>We can read the content of the CTE.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html" class="external-link">dbReadTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"dummy_values"</span><span class="op">)</span></span>
