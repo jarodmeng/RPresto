@@ -54,11 +54,13 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.0" id="rpresto-140">RPresto 1.4.0<a class="anchor" aria-label="anchor" href="#rpresto-140"></a></h2>
-<ul><li>Major refactoring of the internal schema and data parsing functions to enable more robust mapping between Presto data types and R types
+<ul><li>Change maintainer to Jarod Meng (<a href="mailto:jarodm@fb.com" class="email">jarodm@fb.com</a>)</li>
+<li>Major refactoring of the internal schema and data parsing functions to enable more robust mapping between Presto data types and R types
 <ul><li>The output is changed from <code>data.frame</code> to <code>tibble</code> to offer better printing and be more consistent with other DBI-compatible datawarehouse packages</li>
 <li>Add more user-friendly R types translation for primitive Presto data types (e.g., DATE types are now translated to <code>Date</code> classes in R; TIMESTAMP types are translated to <code>POSIXct</code> classes; TIME types are translated to <code>difftime</code> classes; INTERVAL types are translated to <code>Duration</code> classes)</li>
 <li>Enable more choices of BIGINT type handling (i.e., <code>integer64</code>, <code>integer</code>, <code>numeric</code>, or <code>character</code>). (<a href="https://github.com/prestodb/RPresto/issues/61">#61</a>)</li>
 <li>Add complete support for complex Presto types (i.e., ARRAY, MAP, and ROW). They are now translated to typed vectors, lists, or tibbles depending on the types and structure of the data. (<a href="https://github.com/prestodb/RPresto/issues/118">#118</a>)</li>
+<li>It supports all primitive and complex data types for Trino too. (<a href="https://github.com/prestodb/RPresto/issues/176">#176</a>)</li>
 </ul></li>
 <li>Add vignettes on Presto-R type translations (see <code><a href="../articles/primitive-types.html">vignette("primitive-types")</a></code> and <code><a href="../articles/complex-types.html">vignette("complex-types")</a></code>)</li>
 <li>
@@ -182,7 +184,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Onur Ismail Filiz, Sergey Goder, Thomas J. Leeper.</p>
+  <p></p><p>Developed by Onur Ismail Filiz, Sergey Goder, Jarod G.R. Meng.</p>
 </div>
 
 <div class="pkgdown-footer-right">

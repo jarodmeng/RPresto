@@ -731,7 +731,7 @@ timezone.</p>
 object.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">con</span><span class="op">@</span><span class="va">session.timezone</span></span>
-<span><span class="co">#&gt; [1] "UTC"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Asia/Singapore"</span></span></code></pre></div>
 <p>Here we get the <code>TIMESTAMP</code> and
 <code>TIMESTAMP WITH TIME ZONE</code> values from the table.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
@@ -744,8 +744,8 @@ object.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
 <span><span class="co">#&gt;   timestamp           timestamp_with_tz  </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2000-01-01 <span style="color: #949494;">01:02:03</span> 2000-01-01 <span style="color: #949494;">06:02:03</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2000-01-02 <span style="color: #949494;">02:03:04</span> 2000-01-02 <span style="color: #949494;">07:03:04</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2000-01-01 <span style="color: #949494;">01:02:03</span> 2000-01-01 <span style="color: #949494;">14:02:03</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2000-01-02 <span style="color: #949494;">02:03:04</span> 2000-01-02 <span style="color: #949494;">15:03:04</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <p>We can check the R types of the two columns.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
@@ -759,9 +759,9 @@ object.</p>
 time zone.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.posixct</span><span class="op">$</span><span class="va">timestamp</span>, <span class="fu">lubridate</span><span class="fu">::</span><span class="va"><a href="https://lubridate.tidyverse.org/reference/tz.html" class="external-link">tz</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "UTC" "UTC" "UTC"</span></span>
+<span><span class="co">#&gt; [1] "Asia/Singapore" "Asia/Singapore" "Asia/Singapore"</span></span>
 <span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.posixct</span><span class="op">$</span><span class="va">timestamp_with_tz</span>, <span class="fu">lubridate</span><span class="fu">::</span><span class="va"><a href="https://lubridate.tidyverse.org/reference/tz.html" class="external-link">tz</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "UTC" "UTC" "UTC"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Asia/Singapore" "Asia/Singapore" "Asia/Singapore"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="intervals">
@@ -806,7 +806,7 @@ We map both of them to <code>lubridate::Duration-class</code>.</p>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Onur Ismail Filiz, Sergey Goder, Thomas J. Leeper.</p>
+<p>Developed by Onur Ismail Filiz, Sergey Goder, Jarod G.R. Meng.</p>
 </div>
 
 <div class="pkgdown-footer-right">
