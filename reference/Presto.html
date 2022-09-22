@@ -70,7 +70,8 @@
 <span>  host <span class="op">=</span> <span class="st">"localhost"</span>,</span>
 <span>  port <span class="op">=</span> <span class="fl">8080</span>,</span>
 <span>  source <span class="op">=</span> <span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/getPackageName.html" class="external-link">getPackageName</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  session.timezone <span class="op">=</span> <span class="st">"UTC"</span>,</span>
+<span>  session.timezone <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  output.timezone <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  parameters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  ctes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  request.config <span class="op">=</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/config.html" class="external-link">config</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -119,10 +120,16 @@
 
 
 <dt>session.timezone</dt>
-<dd><p>Time zone to use for the connection. Presto returns
+<dd><p>Time zone of the Presto server. Presto returns
 timestamps without time zones with respect to this value. The time
 arithmetic (e.g. adding hours) will also be done in the given time
-zone. See the session.timezone tests for examples.</p></dd>
+zone. This value is passed to Presto server via the request headers.</p></dd>
+
+
+<dt>output.timezone</dt>
+<dd><p>The time zone using which TIME WITH TZ and TIMESTAMP
+values in the output should be represented. Default to the Presto
+server timezone (use <code>show(&lt;PrestoConnection&gt;)</code> to see).</p></dd>
 
 
 <dt>parameters</dt>

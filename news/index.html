@@ -84,6 +84,10 @@
 <code>PrestoConnection</code> gains a <code>request.config</code> slot whereby users can set extra Curl configs (as returned by <code><a href="https://httr.r-lib.org/reference/config.html" class="external-link">httr::config()</a></code> to GET/POST requests. (<a href="https://github.com/prestodb/RPresto/issues/173">#173</a>)</li>
 <li>Styling the whole package using <code><a href="https://styler.r-lib.org/reference/style_pkg.html" class="external-link">styler::style_pkg()</a></code>. A notable change is to user double quotes everywhere instead of a combination of single and double quotes. (<a href="https://github.com/prestodb/RPresto/issues/174">#174</a>)</li>
 <li>Add an experimental feature to support common table expressions (CTEs) in both DBI and dplyr backends (see <code><a href="../articles/common-table-expressions.html">vignette("common-table-expressions")</a></code>) (<a href="https://github.com/prestodb/RPresto/issues/175">#175</a>)</li>
+<li>
+<code><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect()</a></code> now uses empty string “” (rather than UTC) as the default session.timezone which translates to the Presto server timezone.</li>
+<li>
+<code><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect()</a></code> and <code><a href="../reference/src_presto.html">src_presto()</a></code> gain an <code>output.timezone</code> argument which can be used to control how <code>TIME WITH TZ</code> and <code>TIMESTAMP</code> values are represented in the output tibble.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.3.8" id="rpresto-138">RPresto 1.3.8<a class="anchor" aria-label="anchor" href="#rpresto-138"></a></h2>
