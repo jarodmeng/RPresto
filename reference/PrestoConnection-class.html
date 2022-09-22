@@ -49,7 +49,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>S4 implementation of <code>DBIConnection</code> for Presto.</h1>
-      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/PrestoConnection.R"><code>R/PrestoConnection.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbCreateTable.R"><code>R/dbCreateTable.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbCreateTableAs.R"><code>R/dbCreateTableAs.R</code></a>, and 9 more</small>
+      <small class="dont-index">Source: <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/PrestoConnection.R"><code>R/PrestoConnection.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbCreateTable.R"><code>R/dbCreateTable.R</code></a>, <a href="https://github.com/prestodb/RPresto/blob/HEAD/R/dbCreateTableAs.R"><code>R/dbCreateTableAs.R</code></a>, and 10 more</small>
       <div class="d-none name"><code>PrestoConnection-class.Rd</code></div>
     </div>
 
@@ -87,6 +87,9 @@
 <span></span>
 <span><span class="co"># S4 method for PrestoConnection</span></span>
 <span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListTables.html" class="external-link">dbListTables</a></span><span class="op">(</span><span class="va">conn</span>, <span class="va">pattern</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for PrestoConnection,character</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbReadTable.html" class="external-link">dbReadTable</a></span><span class="op">(</span><span class="va">conn</span>, <span class="va">name</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for PrestoConnection,character</span></span>
 <span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbRemoveTable.html" class="external-link">dbRemoveTable</a></span><span class="op">(</span><span class="va">conn</span>, <span class="va">name</span>, <span class="va">...</span>, fail_if_missing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
