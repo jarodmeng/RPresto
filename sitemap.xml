@@ -91,6 +91,9 @@
     <loc>https://github.com/prestodb/RPresto/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/prestodb/RPresto/reference/presto_has_default.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/prestodb/RPresto/reference/sqlCreateTableAs.html</loc>
   </url>
   <url>
