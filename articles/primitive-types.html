@@ -151,9 +151,9 @@ R.</p>
 <td>numeric</td>
 </tr>
 <tr class="even">
-<td>Floating-point</td>
+<td>Fixed-precision</td>
 <td>DECIMAL</td>
-<td><strong>not supported</strong></td>
+<td>character</td>
 </tr>
 <tr class="odd">
 <td>String</td>
@@ -270,10 +270,10 @@ types they represent.</p>
 <code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbListFields.html" class="external-link">dbListFields</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"presto_primitive_types"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "boolean"                "tinyint"                "smallint"              </span></span>
 <span><span class="co">#&gt;  [4] "integer"                "bigint"                 "real"                  </span></span>
-<span><span class="co">#&gt;  [7] "double"                 "varchar"                "char"                  </span></span>
-<span><span class="co">#&gt; [10] "varbinary"              "date"                   "time"                  </span></span>
-<span><span class="co">#&gt; [13] "time_with_tz"           "timestamp"              "timestamp_with_tz"     </span></span>
-<span><span class="co">#&gt; [16] "interval_year_to_month" "interval_day_to_second"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [7] "double"                 "decimal"                "varchar"               </span></span>
+<span><span class="co">#&gt; [10] "char"                   "varbinary"              "date"                  </span></span>
+<span><span class="co">#&gt; [13] "time"                   "time_with_tz"           "timestamp"             </span></span>
+<span><span class="co">#&gt; [16] "timestamp_with_tz"      "interval_year_to_month" "interval_day_to_second"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -588,6 +588,29 @@ type, so translation between Presto and R is straightforward.</p>
 <span><span class="co">#&gt; "numeric" "numeric"</span></span></code></pre></div>
 </div>
 <div class="section level3">
+<h3 id="fixed-precision-numbers">Fixed-precision numbers<a class="anchor" aria-label="anchor" href="#fixed-precision-numbers"></a>
+</h3>
+<p>Presto offers a <code>DECIMAL</code> data type that has fixed
+precision up to 38 digits. This means that it can be used to represent a
+very large integer which is obviously outside of the precision limits
+mentioned above. We can’t decide one precise R class to translate the
+<code>DECIMAL</code> data type into, so RPresto currently translates the
+type into a string (i.e., <code>character</code>) in R.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span></span>
+<span>  <span class="va">df.fixed_precision</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span></span>
+<span>    <span class="va">con</span>,</span>
+<span>    <span class="st">"SELECT decimal FROM presto_primitive_types"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 1</span></span></span>
+<span><span class="co">#&gt;   decimal            </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> -9007199254740991.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 9007199254740991.5 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="strings">Strings<a class="anchor" aria-label="anchor" href="#strings"></a>
 </h3>
 <div class="section level4">
@@ -597,7 +620,7 @@ type, so translation between Presto and R is straightforward.</p>
 <p><a href="https://prestodb.io/docs/current/language/types.html#varchar" class="external-link"><code>VARCHAR</code></a>
 and <a href="https://prestodb.io/docs/current/language/types.html#char" class="external-link"><code>CHAR</code></a>
 data types in Presto are mapped to R’s <code>character</code> type.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span></span>
 <span>  <span class="va">df.characters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span></span>
 <span>    <span class="va">con</span>,</span>
@@ -611,7 +634,7 @@ data types in Presto are mapped to R’s <code>character</code> type.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> def     b    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <p>We can verify the resulting R types to be <code>character</code>.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.characters</span>, <span class="va">class</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     varchar        char </span></span>
 <span><span class="co">#&gt; "character" "character"</span></span></code></pre></div>
@@ -623,7 +646,7 @@ data types in Presto are mapped to R’s <code>character</code> type.</p>
 <p>Presto’s <a href="https://prestodb.io/docs/current/language/types.html#varbinary" class="external-link"><code>VARBINARY</code></a>
 type stores string data in raw bytes. It can be nicely mapped to R’s
 <code>raw</code> type.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span></span>
 <span>  <span class="va">df.bytes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span></span>
 <span>    <span class="va">con</span>,</span>
@@ -638,11 +661,11 @@ type stores string data in raw bytes. It can be nicely mapped to R’s
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #949494;">&lt;raw [0]&gt;</span></span></span></code></pre></div>
 <p>We can verify all elements in the resulting column are of
 <code>raw</code> data type.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.bytes</span><span class="op">$</span><span class="va">varbinary</span>, <span class="va">class</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "raw" "raw" "raw"</span></span></code></pre></div>
 <p>We can also convert the bytes data back to the string values.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">df.bytes</span>, string <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">varbinary</span>, <span class="va">rawToChar</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
 <span><span class="co">#&gt;   varbinary string</span></span>
@@ -682,7 +705,7 @@ isn’t associated with a unique point in time (i.e., seconds or
 microseconds since epoch).</p>
 <p>We use base R’s <code>Date</code> S3 class to translate Presto’s
 <code>DATE</code> type.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span></span>
 <span>  <span class="va">df.date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span></span>
 <span>    <span class="va">con</span>,</span>
@@ -696,7 +719,7 @@ microseconds since epoch).</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2000-01-02</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <p>We can verify the R type of the column.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.date</span>, <span class="va">class</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   date </span></span>
 <span><span class="co">#&gt; "Date"</span></span></code></pre></div>
@@ -712,7 +735,7 @@ to a unique numeric value that refers to the number of time units
 (i.e., the beginning of time). This is why the mode of a
 <code>POSIXct</code> value in R is numeric and you can call the
 <code><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer()</a></code> function on it.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">foo</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html" class="external-link">ymd_hms</a></span><span class="op">(</span><span class="st">"2000-01-01 01:02:03"</span>, tz <span class="op">=</span> <span class="st">"America/New_York"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mode.html" class="external-link">mode</a></span><span class="op">(</span><span class="va">foo</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "numeric"</span></span>
@@ -729,12 +752,12 @@ timezone.</p>
 <p>You can check the session time zone by printing the
 <code>session.timezone</code> slot of the <code>PrestoConnection</code>
 object.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">con</span><span class="op">@</span><span class="va">session.timezone</span></span>
 <span><span class="co">#&gt; [1] "Asia/Singapore"</span></span></code></pre></div>
 <p>Here we get the <code>TIMESTAMP</code> and
 <code>TIMESTAMP WITH TIME ZONE</code> values from the table.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span></span>
 <span>  <span class="va">df.posixct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span></span>
 <span>    <span class="va">con</span>,</span>
@@ -748,7 +771,7 @@ object.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2000-01-02 <span style="color: #949494;">02:03:04</span> 2000-01-02 <span style="color: #949494;">15:03:04</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <p>We can check the R types of the two columns.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">df.posixct</span>, <span class="va">class</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $timestamp</span></span>
 <span><span class="co">#&gt; [1] "POSIXct" "POSIXt" </span></span>
@@ -757,7 +780,7 @@ object.</p>
 <span><span class="co">#&gt; [1] "POSIXct" "POSIXt"</span></span></code></pre></div>
 <p>We can also verify that the time zone attributes match the session
 time zone.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.posixct</span><span class="op">$</span><span class="va">timestamp</span>, <span class="fu">lubridate</span><span class="fu">::</span><span class="va"><a href="https://lubridate.tidyverse.org/reference/tz.html" class="external-link">tz</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Asia/Singapore" "Asia/Singapore" "Asia/Singapore"</span></span>
 <span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_chr</a></span><span class="op">(</span><span class="va">df.posixct</span><span class="op">$</span><span class="va">timestamp_with_tz</span>, <span class="fu">lubridate</span><span class="fu">::</span><span class="va"><a href="https://lubridate.tidyverse.org/reference/tz.html" class="external-link">tz</a></span><span class="op">)</span></span>
@@ -770,7 +793,7 @@ time zone.</p>
 <p>Presto has two <code>INTERVAL</code> types: <a href="https://prestodb.io/docs/current/language/types.html#interval-year-to-month" class="external-link"><code>INTERVAL YEAR TO MONTH</code></a>
 and <a href="https://prestodb.io/docs/current/language/types.html#interval-day-to-second" class="external-link"><code>INTERVAL DAY TO SECOND</code></a>.
 We map both of them to <code>lubridate::Duration-class</code>.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span></span>
 <span>  <span class="va">df.duration</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html" class="external-link">dbGetQuery</a></span><span class="op">(</span></span>
 <span>    <span class="va">con</span>,</span>
@@ -794,7 +817,7 @@ We map both of them to <code>lubridate::Duration-class</code>.</p>
 <div class="section level2">
 <h2 id="walkthrough-wrap-up">Walkthrough wrap-up<a class="anchor" aria-label="anchor" href="#walkthrough-wrap-up"></a>
 </h2>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html" class="external-link">dbDisconnect</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 </div>
