@@ -127,11 +127,12 @@ db_write_table.PrestoConnection <- function(con, table, types, values, temporary
 #' @param ... Extra arguments to be passed to individual methods.
 #' @importFrom dbplyr db_copy_to
 #' @export
-db_copy_to.PrestoConnection <- function(con, table, values, overwrite = FALSE, types = NULL, temporary = TRUE,
-                                        unique_indexes = NULL, indexes = NULL, analyze = TRUE, ...,
-                                        in_transaction = TRUE, with = NULL) {
+db_copy_to.PrestoConnection <- function(con, table, values, ..., overwrite = FALSE, types = NULL, temporary = TRUE,
+                                        unique_indexes = NULL, indexes = NULL, analyze = TRUE, in_transaction = TRUE, with = NULL) {
+  # so that check_dots_used() in dbplyr::db_copy_to() doesn't return error
+  force(with)
   table <- dplyr::db_write_table(
-    con, table,
+    con = con, table = table,
     types = types, values = values,
     temporary = temporary, overwrite = overwrite, with = with,
     ...

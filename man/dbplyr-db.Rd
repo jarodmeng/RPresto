@@ -28,13 +28,13 @@
   con,
   table,
   values,
+  ...,
   overwrite = FALSE,
   types = NULL,
   temporary = TRUE,
   unique_indexes = NULL,
   indexes = NULL,
   analyze = TRUE,
-  ...,
   in_transaction = TRUE,
   with = NULL
 )

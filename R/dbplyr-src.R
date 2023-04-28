@@ -186,7 +186,7 @@ copy_to.src_presto <- function(dest, df, name = deparse(substitute(df)), overwri
     )
   } else {
     df <- as.data.frame(dplyr::collect(df))
-    name <- dbplyr::db_copy_to(dest$con, name, df,
+    name <- dbplyr::db_copy_to(con = dest$con, table = name, values = df,
       overwrite = overwrite,
       types = NULL,
       temporary = FALSE,
@@ -196,7 +196,10 @@ copy_to.src_presto <- function(dest, df, name = deparse(substitute(df)), overwri
       ...
     )
     vars <- names(df)
-    out <- dplyr::tbl(dest, name, vars)
+    if (inherits(name, "Id")) {
+      name <- dbplyr::as.sql(name, dest$con)
+    }
+    out <- dplyr::tbl(src = dest, from = name, vars = vars)
   }
   invisible(out)
 }
@@ -262,7 +265,11 @@ copy_to.PrestoConnection <- function(dest, df, name = deparse(substitute(df)), o
       dbplyr::remote_con(x), x, use_presto_cte = TRUE
     )
     name <- dbplyr::db_compute(
-      dbplyr::remote_con(x), name, sql, temporary = temporary, ...
+      con = dbplyr::remote_con(x),
+      table = name,
+      sql = sql,
+      temporary = temporary,
+      ...
     )
   }
   name
